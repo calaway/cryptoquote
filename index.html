@@ -49,6 +49,8 @@
   document.addEventListener('keyup', (event) => {
     if (!selectedLetter) return
     const enteredLetter = event.key.toUpperCase()
+    if (!enteredLetter.match(/^[A-Z]$/)) return
+
     Object.keys(translationMap).forEach((originalLetter) => {
       if (translationMap[originalLetter] === enteredLetter) {
         delete translationMap[originalLetter]
@@ -58,6 +60,8 @@
     document.querySelectorAll('p#final .letter').forEach((finalLetterElement) => {
       finalLetterElement.innerHTML = translationMap[finalLetterElement.getAttribute('data-original')] || '_'
     })
+
+    document.querySelectorAll('.letter').forEach((letterElement) => letterElement.classList.remove('highlight'))
   })
 </script>
 </html>
