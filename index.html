@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cryptoquote</title>
+</head>
+<body>
+  <textarea id='cryptoquote-input'></textarea>
+
+  <p id='original'></p>
+  <br />
+  <p id='final'></p>
+</body>
+<style>
+  html {
+    font-family: "Courier New", Courier, monospace;
+    letter-spacing: .2rem;
+  }
+</style>
+<script>
+  const cryptoquoteInput = document.querySelector('#cryptoquote-input')
+  const original = document.querySelector('#original')
+
+  cryptoquoteInput.addEventListener('input', (event) => {
+    const cryptoquoteInputText = cryptoquoteInput.value.toUpperCase()
+    original.innerHTML = cryptoquoteInputText
+    final.innerHTML = cryptoquoteInputText.replace(/\w/g, (letter) => `<span data-original=${letter}>_</span>`)
+  })
+</script>
+</html>
