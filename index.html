@@ -53,16 +53,20 @@
 
     function setupGame() {
       const ciphertext = ciphertextInputElement.value.toUpperCase();
-      ciphertextElement.innerHTML = ciphertext.replace(
-        /\w/g,
-        (letter) =>
-          `<span class='letter' data-ciphertext-char=${letter}>${letter}</span>`
-      );
-      plaintextElement.innerHTML = ciphertext.replace(
-        /\w/g,
-        (letter) =>
-          `<span class='letter' data-ciphertext-char=${letter}>_</span>`
-      );
+      ciphertextElement.innerHTML = ciphertext
+        .replace(
+          /\w/g,
+          (letter) =>
+            `<span class='letter' data-ciphertext-char=${letter}>${letter}</span>`
+        )
+        .replace(/\n/g, '<br>');
+      plaintextElement.innerHTML = ciphertext
+        .replace(
+          /\w/g,
+          (letter) =>
+            `<span class='letter' data-ciphertext-char=${letter}>_</span>`
+        )
+        .replace(/\n/g, '<br>');
 
       const ciphertextCharTally = {};
       ciphertext
