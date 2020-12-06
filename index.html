@@ -58,11 +58,10 @@
             ? (ciphertextCharTally[letter] += 1)
             : (ciphertextCharTally[letter] = 1)
         );
-      ciphertextCharTallyElement.innerHTML = JSON.stringify(
-        ciphertextCharTally,
-        null,
-        2
-      );
+      ciphertextCharTallyElement.innerHTML = Object.entries(ciphertextCharTally)
+        .sort(([_char1, tally1], [_char2, tally2]) => tally2 - tally1)
+        .map(([char, tally]) => `${char}: ${tally}`)
+        .join('<br>');
 
       const allLetterElements = document.querySelectorAll('.letter');
       allLetterElements.forEach((letterElement) => {
