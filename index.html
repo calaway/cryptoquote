@@ -10,6 +10,7 @@
 
   <p id='original'></p>
   <p id='final'></p>
+  <p id='character-tally'></p>
 </body>
 <style>
   html {
@@ -25,6 +26,7 @@
 <script>
   const cryptoquoteInput = document.querySelector('#cryptoquote-input')
   const original = document.querySelector('#original')
+  const characterTallyElement = document.querySelector('#character-tally')
   let selectedLetter
   const translationMap = {}
 
@@ -34,6 +36,13 @@
     const cryptoquoteInputText = cryptoquoteInput.value.toUpperCase()
     original.innerHTML = cryptoquoteInputText.replace(/\w/g, (letter) => `<span class='letter' data-original=${letter}>${letter}</span>`)
     final.innerHTML = cryptoquoteInputText.replace(/\w/g, (letter) => `<span class='letter' data-original=${letter}>_</span>`)
+
+    const characterTally = {}
+    cryptoquoteInputText.split('').forEach((letter) => (
+      characterTally[letter] ? characterTally[letter] += 1 : characterTally[letter] = 1)
+    )
+    console.log(JSON.stringify(characterTally, null, 2));
+    characterTallyElement.innerHTML = JSON.stringify(characterTally, null, 2)
 
     const allLetterElements = document.querySelectorAll('.letter')
     allLetterElements.forEach((letterElement) => {
