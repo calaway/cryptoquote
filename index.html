@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cryptoquote</title>
   </head>
-  <body>
-    <textarea id="cryptoquote-input"></textarea>
 
-    <p id="original"></p>
-    <p id="final"></p>
-    <p id="character-tally"></p>
+  <body>
+    <textarea id="ciphertext-input"></textarea>
+    <p id="ciphertext"></p>
+    <p id="plaintext"></p>
+    <p id="ciphertext-char-tally"></p>
   </body>
+
   <style>
     html {
       font-family: "Courier New", Courier, monospace;
@@ -23,37 +24,45 @@
       margin-right: 0.2rem;
     }
   </style>
+
   <script>
-    const cryptoquoteInput = document.querySelector("#cryptoquote-input");
-    const original = document.querySelector("#original");
-    const characterTallyElement = document.querySelector("#character-tally");
+    const ciphertextInputElement = document.querySelector("#ciphertext-input");
+    const ciphertextElement = document.querySelector("#ciphertext");
+    const plaintextElement = document.querySelector("#plaintext");
+    const ciphertextCharTallyElement = document.querySelector(
+      "#ciphertext-char-tally"
+    );
     let selectedLetter;
     const translationMap = {};
 
-    cryptoquoteInput.addEventListener("input", setupGame);
+    ciphertextInputElement.addEventListener("input", setupGame);
 
     function setupGame() {
-      const cryptoquoteInputText = cryptoquoteInput.value.toUpperCase();
-      original.innerHTML = cryptoquoteInputText.replace(
+      const ciphertext = ciphertextInputElement.value.toUpperCase();
+      ciphertextElement.innerHTML = ciphertext.replace(
         /\w/g,
         (letter) =>
-          `<span class='letter' data-original=${letter}>${letter}</span>`
+          `<span class='letter' data-ciphertext-char=${letter}>${letter}</span>`
       );
-      final.innerHTML = cryptoquoteInputText.replace(
+      plaintextElement.innerHTML = ciphertext.replace(
         /\w/g,
-        (letter) => `<span class='letter' data-original=${letter}>_</span>`
+        (letter) =>
+          `<span class='letter' data-ciphertext-char=${letter}>_</span>`
       );
 
-      const characterTally = {};
-      cryptoquoteInputText
+      const ciphertextCharTally = {};
+      ciphertext
         .split("")
         .forEach((letter) =>
-          characterTally[letter]
-            ? (characterTally[letter] += 1)
-            : (characterTally[letter] = 1)
+          ciphertextCharTally[letter]
+            ? (ciphertextCharTally[letter] += 1)
+            : (ciphertextCharTally[letter] = 1)
         );
-      console.log(JSON.stringify(characterTally, null, 2));
-      characterTallyElement.innerHTML = JSON.stringify(characterTally, null, 2);
+      ciphertextCharTallyElement.innerHTML = JSON.stringify(
+        ciphertextCharTally,
+        null,
+        2
+      );
 
       const allLetterElements = document.querySelectorAll(".letter");
       allLetterElements.forEach((letterElement) => {
@@ -61,9 +70,9 @@
           allLetterElements.forEach((letterElement) =>
             letterElement.classList.remove("highlight")
           );
-          selectedLetter = letterElement.getAttribute("data-original");
+          selectedLetter = letterElement.getAttribute("data-ciphertext-char");
           const selectedLetterElements = document.querySelectorAll(
-            `.letter[data-original=${selectedLetter}`
+            `.letter[data-ciphertext-char=${selectedLetter}`
           );
           selectedLetterElements.forEach((selectedLetterElement) =>
             selectedLetterElement.classList.add("highlight")
@@ -77,18 +86,19 @@
       const enteredLetter = event.key.toUpperCase();
       if (!enteredLetter.match(/^[A-Z]$/)) return;
 
-      Object.keys(translationMap).forEach((originalLetter) => {
-        if (translationMap[originalLetter] === enteredLetter) {
-          delete translationMap[originalLetter];
+      Object.keys(translationMap).forEach((ciphertextLetter) => {
+        if (translationMap[ciphertextLetter] === enteredLetter) {
+          delete translationMap[ciphertextLetter];
         }
       });
       translationMap[selectedLetter] = enteredLetter;
       document
-        .querySelectorAll("p#final .letter")
-        .forEach((finalLetterElement) => {
-          finalLetterElement.innerHTML =
-            translationMap[finalLetterElement.getAttribute("data-original")] ||
-            "_";
+        .querySelectorAll("p#plaintext .letter")
+        .forEach((plaintextLetterElement) => {
+          plaintextLetterElement.innerHTML =
+            translationMap[
+              plaintextLetterElement.getAttribute("data-ciphertext-char")
+            ] || "_";
         });
 
       document
