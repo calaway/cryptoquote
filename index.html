@@ -7,15 +7,26 @@
   </head>
 
   <body>
-    <textarea id="ciphertext-input"></textarea>
-    <p id="ciphertext"></p>
-    <p id="plaintext"></p>
-    <p id="ciphertext-char-tally"></p>
+    <main id="main">
+      <h1>Cryptoquote</h1>
+      <textarea id="ciphertext-input"></textarea>
+      <p id="ciphertext"></p>
+      <p id="plaintext"></p>
+      <p id="ciphertext-char-tally"></p>
+    </main>
   </body>
 
   <style>
     html {
       font-family: 'Courier New', Courier, monospace;
+    }
+    #main {
+      width: 50%;
+      margin: auto;
+    }
+    #ciphertext-input {
+      width: 100%;
+      height: 100px;
     }
     .highlight {
       background-color: yellow;
