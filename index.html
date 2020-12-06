@@ -15,7 +15,7 @@
 
   <style>
     html {
-      font-family: "Courier New", Courier, monospace;
+      font-family: 'Courier New', Courier, monospace;
     }
     .highlight {
       background-color: yellow;
@@ -26,16 +26,16 @@
   </style>
 
   <script>
-    const ciphertextInputElement = document.querySelector("#ciphertext-input");
-    const ciphertextElement = document.querySelector("#ciphertext");
-    const plaintextElement = document.querySelector("#plaintext");
+    const ciphertextInputElement = document.querySelector('#ciphertext-input');
+    const ciphertextElement = document.querySelector('#ciphertext');
+    const plaintextElement = document.querySelector('#plaintext');
     const ciphertextCharTallyElement = document.querySelector(
-      "#ciphertext-char-tally"
+      '#ciphertext-char-tally'
     );
     let selectedLetter;
     const translationMap = {};
 
-    ciphertextInputElement.addEventListener("input", setupGame);
+    ciphertextInputElement.addEventListener('input', setupGame);
 
     function setupGame() {
       const ciphertext = ciphertextInputElement.value.toUpperCase();
@@ -52,7 +52,7 @@
 
       const ciphertextCharTally = {};
       ciphertext
-        .split("")
+        .split('')
         .forEach((letter) =>
           ciphertextCharTally[letter]
             ? (ciphertextCharTally[letter] += 1)
@@ -64,24 +64,24 @@
         2
       );
 
-      const allLetterElements = document.querySelectorAll(".letter");
+      const allLetterElements = document.querySelectorAll('.letter');
       allLetterElements.forEach((letterElement) => {
-        letterElement.addEventListener("click", () => {
+        letterElement.addEventListener('click', () => {
           allLetterElements.forEach((letterElement) =>
-            letterElement.classList.remove("highlight")
+            letterElement.classList.remove('highlight')
           );
-          selectedLetter = letterElement.getAttribute("data-ciphertext-char");
+          selectedLetter = letterElement.getAttribute('data-ciphertext-char');
           const selectedLetterElements = document.querySelectorAll(
             `.letter[data-ciphertext-char=${selectedLetter}`
           );
           selectedLetterElements.forEach((selectedLetterElement) =>
-            selectedLetterElement.classList.add("highlight")
+            selectedLetterElement.classList.add('highlight')
           );
         });
       });
     }
 
-    document.addEventListener("keyup", (event) => {
+    document.addEventListener('keyup', (event) => {
       if (!selectedLetter) return;
       const enteredLetter = event.key.toUpperCase();
       if (!enteredLetter.match(/^[A-Z]$/)) return;
@@ -93,18 +93,18 @@
       });
       translationMap[selectedLetter] = enteredLetter;
       document
-        .querySelectorAll("p#plaintext .letter")
+        .querySelectorAll('p#plaintext .letter')
         .forEach((plaintextLetterElement) => {
           plaintextLetterElement.innerHTML =
             translationMap[
-              plaintextLetterElement.getAttribute("data-ciphertext-char")
-            ] || "_";
+              plaintextLetterElement.getAttribute('data-ciphertext-char')
+            ] || '_';
         });
 
       document
-        .querySelectorAll(".letter")
+        .querySelectorAll('.letter')
         .forEach((letterElement) =>
-          letterElement.classList.remove("highlight")
+          letterElement.classList.remove('highlight')
         );
     });
   </script>
