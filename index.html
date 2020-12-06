@@ -1,76 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cryptoquote</title>
-</head>
-<body>
-  <textarea id='cryptoquote-input'></textarea>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cryptoquote</title>
+  </head>
+  <body>
+    <textarea id="cryptoquote-input"></textarea>
 
-  <p id='original'></p>
-  <p id='final'></p>
-  <p id='character-tally'></p>
-</body>
-<style>
-  html {
-    font-family: "Courier New", Courier, monospace;
-  }
-  .highlight {
-    background-color: yellow;
-  }
-  span.letter {
-    margin-right: .2rem;
-  }
-</style>
-<script>
-  const cryptoquoteInput = document.querySelector('#cryptoquote-input')
-  const original = document.querySelector('#original')
-  const characterTallyElement = document.querySelector('#character-tally')
-  let selectedLetter
-  const translationMap = {}
+    <p id="original"></p>
+    <p id="final"></p>
+    <p id="character-tally"></p>
+  </body>
+  <style>
+    html {
+      font-family: "Courier New", Courier, monospace;
+    }
+    .highlight {
+      background-color: yellow;
+    }
+    span.letter {
+      margin-right: 0.2rem;
+    }
+  </style>
+  <script>
+    const cryptoquoteInput = document.querySelector("#cryptoquote-input");
+    const original = document.querySelector("#original");
+    const characterTallyElement = document.querySelector("#character-tally");
+    let selectedLetter;
+    const translationMap = {};
 
-  cryptoquoteInput.addEventListener('input', setupGame)
-  
-  function setupGame() {
-    const cryptoquoteInputText = cryptoquoteInput.value.toUpperCase()
-    original.innerHTML = cryptoquoteInputText.replace(/\w/g, (letter) => `<span class='letter' data-original=${letter}>${letter}</span>`)
-    final.innerHTML = cryptoquoteInputText.replace(/\w/g, (letter) => `<span class='letter' data-original=${letter}>_</span>`)
+    cryptoquoteInput.addEventListener("input", setupGame);
 
-    const characterTally = {}
-    cryptoquoteInputText.split('').forEach((letter) => (
-      characterTally[letter] ? characterTally[letter] += 1 : characterTally[letter] = 1)
-    )
-    console.log(JSON.stringify(characterTally, null, 2));
-    characterTallyElement.innerHTML = JSON.stringify(characterTally, null, 2)
+    function setupGame() {
+      const cryptoquoteInputText = cryptoquoteInput.value.toUpperCase();
+      original.innerHTML = cryptoquoteInputText.replace(
+        /\w/g,
+        (letter) =>
+          `<span class='letter' data-original=${letter}>${letter}</span>`
+      );
+      final.innerHTML = cryptoquoteInputText.replace(
+        /\w/g,
+        (letter) => `<span class='letter' data-original=${letter}>_</span>`
+      );
 
-    const allLetterElements = document.querySelectorAll('.letter')
-    allLetterElements.forEach((letterElement) => {
-      letterElement.addEventListener('click', () => {
-        allLetterElements.forEach((letterElement) => letterElement.classList.remove('highlight'))
-        selectedLetter = letterElement.getAttribute('data-original')
-        const selectedLetterElements = document.querySelectorAll(`.letter[data-original=${selectedLetter}`)
-        selectedLetterElements.forEach((selectedLetterElement) => selectedLetterElement.classList.add('highlight'))
-      })
-    })
-  }
+      const characterTally = {};
+      cryptoquoteInputText
+        .split("")
+        .forEach((letter) =>
+          characterTally[letter]
+            ? (characterTally[letter] += 1)
+            : (characterTally[letter] = 1)
+        );
+      console.log(JSON.stringify(characterTally, null, 2));
+      characterTallyElement.innerHTML = JSON.stringify(characterTally, null, 2);
 
-  document.addEventListener('keyup', (event) => {
-    if (!selectedLetter) return
-    const enteredLetter = event.key.toUpperCase()
-    if (!enteredLetter.match(/^[A-Z]$/)) return
+      const allLetterElements = document.querySelectorAll(".letter");
+      allLetterElements.forEach((letterElement) => {
+        letterElement.addEventListener("click", () => {
+          allLetterElements.forEach((letterElement) =>
+            letterElement.classList.remove("highlight")
+          );
+          selectedLetter = letterElement.getAttribute("data-original");
+          const selectedLetterElements = document.querySelectorAll(
+            `.letter[data-original=${selectedLetter}`
+          );
+          selectedLetterElements.forEach((selectedLetterElement) =>
+            selectedLetterElement.classList.add("highlight")
+          );
+        });
+      });
+    }
 
-    Object.keys(translationMap).forEach((originalLetter) => {
-      if (translationMap[originalLetter] === enteredLetter) {
-        delete translationMap[originalLetter]
-      }
-    })
-    translationMap[selectedLetter] = enteredLetter
-    document.querySelectorAll('p#final .letter').forEach((finalLetterElement) => {
-      finalLetterElement.innerHTML = translationMap[finalLetterElement.getAttribute('data-original')] || '_'
-    })
+    document.addEventListener("keyup", (event) => {
+      if (!selectedLetter) return;
+      const enteredLetter = event.key.toUpperCase();
+      if (!enteredLetter.match(/^[A-Z]$/)) return;
 
-    document.querySelectorAll('.letter').forEach((letterElement) => letterElement.classList.remove('highlight'))
-  })
-</script>
+      Object.keys(translationMap).forEach((originalLetter) => {
+        if (translationMap[originalLetter] === enteredLetter) {
+          delete translationMap[originalLetter];
+        }
+      });
+      translationMap[selectedLetter] = enteredLetter;
+      document
+        .querySelectorAll("p#final .letter")
+        .forEach((finalLetterElement) => {
+          finalLetterElement.innerHTML =
+            translationMap[finalLetterElement.getAttribute("data-original")] ||
+            "_";
+        });
+
+      document
+        .querySelectorAll(".letter")
+        .forEach((letterElement) =>
+          letterElement.classList.remove("highlight")
+        );
+    });
+  </script>
 </html>
