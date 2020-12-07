@@ -49,38 +49,31 @@
     let selectedLetter;
     const translationMap = {};
 
-    ciphertextInputElement.addEventListener('input', setupGame);
+    function renderCiphertextInput() {
+      ciphertextInputElement.value = localStorage.ciphertext;
+    }
 
-    function setupGame() {
-      const ciphertext = ciphertextInputElement.value.toUpperCase();
-      ciphertextElement.innerHTML = ciphertext
+    function renderCiphertext() {
+      ciphertextElement.innerHTML = localStorage.ciphertext
         .replace(
           /\w/g,
           (letter) =>
             `<span class='letter' data-ciphertext-char=${letter}>${letter}</span>`
         )
         .replace(/\n/g, '<br>');
-      plaintextElement.innerHTML = ciphertext
+    }
+
+    function renderPlaintext() {
+      plaintextElement.innerHTML = localStorage.ciphertext
         .replace(
           /\w/g,
           (letter) =>
             `<span class='letter' data-ciphertext-char=${letter}>_</span>`
         )
         .replace(/\n/g, '<br>');
+    }
 
-      const ciphertextCharTally = {};
-      ciphertext
-        .split('')
-        .forEach((letter) =>
-          ciphertextCharTally[letter]
-            ? (ciphertextCharTally[letter] += 1)
-            : (ciphertextCharTally[letter] = 1)
-        );
-      ciphertextCharTallyElement.innerHTML = Object.entries(ciphertextCharTally)
-        .sort(([_char1, tally1], [_char2, tally2]) => tally2 - tally1)
-        .map(([char, tally]) => `${char}: ${tally}`)
-        .join('<br>');
-
+    function addClickListeners() {
       const allLetterElements = document.querySelectorAll('.letter');
       allLetterElements.forEach((letterElement) => {
         letterElement.addEventListener('click', () => {
@@ -97,6 +90,19 @@
         });
       });
     }
+
+    renderCiphertextInput();
+    renderCiphertext();
+    renderPlaintext();
+    addClickListeners();
+
+    ciphertextInputElement.addEventListener('input', (event) => {
+      localStorage.ciphertext = event.target.value.toUpperCase();
+      renderCiphertextInput();
+      renderCiphertext();
+      renderPlaintext();
+      addClickListeners();
+    });
 
     document.addEventListener('keyup', (event) => {
       if (!selectedLetter) return;
@@ -124,5 +130,20 @@
           letterElement.classList.remove('highlight')
         );
     });
+
+    // function setupGame() {
+    //   const ciphertextCharTally = {};
+    //   ciphertext
+    //     .split('')
+    //     .forEach((letter) =>
+    //       ciphertextCharTally[letter]
+    //         ? (ciphertextCharTally[letter] += 1)
+    //         : (ciphertextCharTally[letter] = 1)
+    //     );
+    //   ciphertextCharTallyElement.innerHTML = Object.entries(ciphertextCharTally)
+    //     .sort(([_char1, tally1], [_char2, tally2]) => tally2 - tally1)
+    //     .map(([char, tally]) => `${char}: ${tally}`)
+    //     .join('<br>');
+    // }
   </script>
 </html>
