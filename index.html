@@ -27,8 +27,9 @@
       <p id="plaintext"></p>
       <hr />
 
-      <h4>Character tally</h4>
-      <p id="ciphertext-char-tally"></p>
+      <h4>Hint: Character tally</h4>
+      <button class="hide-button">Show</button>
+      <p id="ciphertext-char-tally" hidden></p>
     </main>
   </body>
 
@@ -193,7 +194,9 @@
     }
 
     document
-      .querySelector('.hide-button')
-      .addEventListener('click', toggleHideNextElement);
+      .querySelectorAll('.hide-button')
+      .forEach((hideButton) =>
+        hideButton.addEventListener('click', toggleHideNextElement)
+      );
   </script>
 </html>
