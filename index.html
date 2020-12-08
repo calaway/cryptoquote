@@ -119,14 +119,19 @@
     function handleKeyStroke() {
       if (!selectedChar) return;
       const enteredChar = event.key.toUpperCase();
-      if (!enteredChar.match(/^[A-Z]$/)) return;
+      if (!enteredChar.match(/^[A-Z]$/) && !enteredChar === 'BACKSPACE') return;
 
       Object.keys(translationMap).forEach((ciphertextChar) => {
         if (translationMap[ciphertextChar] === enteredChar) {
           delete translationMap[ciphertextChar];
         }
       });
-      translationMap[selectedChar] = enteredChar;
+
+      if (enteredChar === 'BACKSPACE') {
+        delete translationMap[selectedChar];
+      } else {
+        translationMap[selectedChar] = enteredChar;
+      }
       document
         .querySelectorAll('p#plaintext .char')
         .forEach((plaintextCharElement) => {
