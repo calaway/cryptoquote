@@ -116,7 +116,7 @@
       addClickListeners();
     });
 
-    document.addEventListener('keyup', (event) => {
+    function handleKeyStroke() {
       if (!selectedChar) return;
       const enteredChar = event.key.toUpperCase();
       if (!enteredChar.match(/^[A-Z]$/)) return;
@@ -139,7 +139,11 @@
       document
         .querySelectorAll('.char')
         .forEach((charElement) => charElement.classList.remove('highlight'));
-    });
+
+      selectedChar = null;
+    }
+
+    document.addEventListener('keyup', handleKeyStroke);
 
     function toggleHideNextElement(event) {
       const nextElementSibling = event.target.nextElementSibling;
