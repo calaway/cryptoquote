@@ -9,13 +9,23 @@
   <body>
     <main id="main">
       <h1>Cryptoquote</h1>
+      <hr />
+
+      <h4>Enter ciphertext</h4>
       <textarea
         id="ciphertext-input"
         placeholder="Enter Cryptoquote text"
       ></textarea>
+      <hr />
+
+      <h4>Ciphertext</h4>
       <p id="ciphertext"></p>
+      <hr />
+
+      <h4>Plaintext</h4>
       <p id="plaintext"></p>
-      <p id="ciphertext-char-tally"></p>
+
+      <!-- <p id="ciphertext-char-tally"></p> -->
     </main>
   </body>
 
@@ -61,7 +71,7 @@
           (letter) =>
             `<span class='letter' data-ciphertext-char=${letter}>${letter}</span>`
         )
-        .replace(/\n/g, '<br>');
+        .replace(/\n/g, '<br />');
     }
 
     function renderPlaintext() {
@@ -71,7 +81,7 @@
           (letter) =>
             `<span class='letter' data-ciphertext-char=${letter}>_</span>`
         )
-        .replace(/\n/g, '<br>');
+        .replace(/\n/g, '<br />');
     }
 
     function addClickListeners() {
@@ -145,7 +155,7 @@
     //   ciphertextCharTallyElement.innerHTML = Object.entries(ciphertextCharTally)
     //     .sort(([_char1, tally1], [_char2, tally2]) => tally2 - tally1)
     //     .map(([char, tally]) => `${char}: ${tally}`)
-    //     .join('<br>');
+    //     .join('<br />');
     // }
   </script>
 </html>
