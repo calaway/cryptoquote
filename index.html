@@ -116,9 +116,24 @@
       addClickListeners();
     });
 
+    function unselectChar() {
+      document
+        .querySelectorAll('.char')
+        .forEach((charElement) => charElement.classList.remove('highlight'));
+
+      selectedChar = null;
+    }
+
     function handleKeyStroke() {
       if (!selectedChar) return;
+
       const enteredChar = event.key.toUpperCase();
+
+      if (enteredChar === 'ESCAPE') {
+        unselectChar();
+        return;
+      }
+
       if (!enteredChar.match(/^[A-Z]$/) && !enteredChar === 'BACKSPACE') return;
 
       Object.keys(translationMap).forEach((ciphertextChar) => {
@@ -141,11 +156,7 @@
             ] || '_';
         });
 
-      document
-        .querySelectorAll('.char')
-        .forEach((charElement) => charElement.classList.remove('highlight'));
-
-      selectedChar = null;
+      unselectChar();
     }
 
     document.addEventListener('keyup', handleKeyStroke);
