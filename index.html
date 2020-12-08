@@ -12,6 +12,7 @@
       <hr />
 
       <h4>Enter ciphertext</h4>
+      <button class="hide-button">Hide</button>
       <textarea
         id="ciphertext-input"
         placeholder="Enter Cryptoquote text"
@@ -142,6 +143,20 @@
           letterElement.classList.remove('highlight')
         );
     });
+
+    function toggleHideNextElement(event) {
+      const nextElementSibling = event.target.nextElementSibling;
+      nextElementSibling.toggleAttribute('hidden');
+      if (nextElementSibling.hidden) {
+        event.target.innerHTML = 'Show';
+      } else {
+        event.target.innerHTML = 'Hide';
+      }
+    }
+
+    document
+      .querySelector('.hide-button')
+      .addEventListener('click', toggleHideNextElement);
 
     // function setupGame() {
     //   const ciphertextCharTally = {};
