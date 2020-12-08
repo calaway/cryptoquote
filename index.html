@@ -136,11 +136,13 @@
 
       if (!enteredChar.match(/^[A-Z]$/) && !enteredChar === 'BACKSPACE') return;
 
-      Object.keys(translationMap).forEach((ciphertextChar) => {
-        if (translationMap[ciphertextChar] === enteredChar) {
-          delete translationMap[ciphertextChar];
+      Object.entries(translationMap).forEach(
+        ([ciphertextChar, plaintextChar]) => {
+          if (plaintextChar === enteredChar) {
+            delete translationMap[ciphertextChar];
+          }
         }
-      });
+      );
 
       if (enteredChar === 'BACKSPACE') {
         delete translationMap[selectedChar];
