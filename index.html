@@ -25,8 +25,10 @@
 
       <h4>Plaintext</h4>
       <p id="plaintext"></p>
+      <hr />
 
-      <!-- <p id="ciphertext-char-tally"></p> -->
+      <h4>Character tally</h4>
+      <p id="ciphertext-char-tally"></p>
     </main>
   </body>
 
@@ -102,11 +104,27 @@
       });
     }
 
+    function renderCharTally() {
+      const ciphertextCharTally = {};
+      localStorage.ciphertext
+        .split('')
+        .forEach((char) =>
+          ciphertextCharTally[char]
+            ? (ciphertextCharTally[char] += 1)
+            : (ciphertextCharTally[char] = 1)
+        );
+      ciphertextCharTallyElement.innerHTML = Object.entries(ciphertextCharTally)
+        .sort(([_char1, tally1], [_char2, tally2]) => tally2 - tally1)
+        .map(([char, tally]) => `${char}: ${tally}`)
+        .join('<br />');
+    }
+
     localStorage.ciphertext = localStorage.ciphertext || '';
     renderCiphertextInput();
     renderCiphertext();
     renderPlaintext();
     addClickListeners();
+    renderCharTally();
 
     ciphertextInputElement.addEventListener('input', (event) => {
       localStorage.ciphertext = event.target.value.toUpperCase();
@@ -114,6 +132,7 @@
       renderCiphertext();
       renderPlaintext();
       addClickListeners();
+      renderCharTally();
     });
 
     function unselectChar() {
@@ -176,20 +195,5 @@
     document
       .querySelector('.hide-button')
       .addEventListener('click', toggleHideNextElement);
-
-    // function setupGame() {
-    //   const ciphertextCharTally = {};
-    //   ciphertext
-    //     .split('')
-    //     .forEach((char) =>
-    //       ciphertextCharTally[char]
-    //         ? (ciphertextCharTally[char] += 1)
-    //         : (ciphertextCharTally[char] = 1)
-    //     );
-    //   ciphertextCharTallyElement.innerHTML = Object.entries(ciphertextCharTally)
-    //     .sort(([_char1, tally1], [_char2, tally2]) => tally2 - tally1)
-    //     .map(([char, tally]) => `${char}: ${tally}`)
-    //     .join('<br />');
-    // }
   </script>
 </html>
