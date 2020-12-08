@@ -46,7 +46,7 @@
     .highlight {
       background-color: yellow;
     }
-    span.letter {
+    span.char {
       margin-right: 0.2rem;
     }
   </style>
@@ -58,7 +58,7 @@
     const ciphertextCharTallyElement = document.querySelector(
       '#ciphertext-char-tally'
     );
-    let selectedLetter;
+    let selectedChar;
     const translationMap = {};
 
     function renderCiphertextInput() {
@@ -69,8 +69,8 @@
       ciphertextElement.innerHTML = localStorage.ciphertext
         .replace(
           /\w/g,
-          (letter) =>
-            `<span class='letter' data-ciphertext-char=${letter}>${letter}</span>`
+          (char) =>
+            `<span class='char' data-ciphertext-char=${char}>${char}</span>`
         )
         .replace(/\n/g, '<br />');
     }
@@ -79,25 +79,24 @@
       plaintextElement.innerHTML = localStorage.ciphertext
         .replace(
           /\w/g,
-          (letter) =>
-            `<span class='letter' data-ciphertext-char=${letter}>_</span>`
+          (char) => `<span class='char' data-ciphertext-char=${char}>_</span>`
         )
         .replace(/\n/g, '<br />');
     }
 
     function addClickListeners() {
-      const allLetterElements = document.querySelectorAll('.letter');
-      allLetterElements.forEach((letterElement) => {
-        letterElement.addEventListener('click', () => {
-          allLetterElements.forEach((letterElement) =>
-            letterElement.classList.remove('highlight')
+      const allCharElements = document.querySelectorAll('.char');
+      allCharElements.forEach((charElement) => {
+        charElement.addEventListener('click', () => {
+          allCharElements.forEach((charElement) =>
+            charElement.classList.remove('highlight')
           );
-          selectedLetter = letterElement.getAttribute('data-ciphertext-char');
-          const selectedLetterElements = document.querySelectorAll(
-            `.letter[data-ciphertext-char=${selectedLetter}`
+          selectedChar = charElement.getAttribute('data-ciphertext-char');
+          const selectedCharElements = document.querySelectorAll(
+            `.char[data-ciphertext-char=${selectedChar}`
           );
-          selectedLetterElements.forEach((selectedLetterElement) =>
-            selectedLetterElement.classList.add('highlight')
+          selectedCharElements.forEach((selectedCharElement) =>
+            selectedCharElement.classList.add('highlight')
           );
         });
       });
@@ -118,30 +117,28 @@
     });
 
     document.addEventListener('keyup', (event) => {
-      if (!selectedLetter) return;
-      const enteredLetter = event.key.toUpperCase();
-      if (!enteredLetter.match(/^[A-Z]$/)) return;
+      if (!selectedChar) return;
+      const enteredChar = event.key.toUpperCase();
+      if (!enteredChar.match(/^[A-Z]$/)) return;
 
-      Object.keys(translationMap).forEach((ciphertextLetter) => {
-        if (translationMap[ciphertextLetter] === enteredLetter) {
-          delete translationMap[ciphertextLetter];
+      Object.keys(translationMap).forEach((ciphertextChar) => {
+        if (translationMap[ciphertextChar] === enteredChar) {
+          delete translationMap[ciphertextChar];
         }
       });
-      translationMap[selectedLetter] = enteredLetter;
+      translationMap[selectedChar] = enteredChar;
       document
-        .querySelectorAll('p#plaintext .letter')
-        .forEach((plaintextLetterElement) => {
-          plaintextLetterElement.innerHTML =
+        .querySelectorAll('p#plaintext .char')
+        .forEach((plaintextCharElement) => {
+          plaintextCharElement.innerHTML =
             translationMap[
-              plaintextLetterElement.getAttribute('data-ciphertext-char')
+              plaintextCharElement.getAttribute('data-ciphertext-char')
             ] || '_';
         });
 
       document
-        .querySelectorAll('.letter')
-        .forEach((letterElement) =>
-          letterElement.classList.remove('highlight')
-        );
+        .querySelectorAll('.char')
+        .forEach((charElement) => charElement.classList.remove('highlight'));
     });
 
     function toggleHideNextElement(event) {
@@ -162,10 +159,10 @@
     //   const ciphertextCharTally = {};
     //   ciphertext
     //     .split('')
-    //     .forEach((letter) =>
-    //       ciphertextCharTally[letter]
-    //         ? (ciphertextCharTally[letter] += 1)
-    //         : (ciphertextCharTally[letter] = 1)
+    //     .forEach((char) =>
+    //       ciphertextCharTally[char]
+    //         ? (ciphertextCharTally[char] += 1)
+    //         : (ciphertextCharTally[char] = 1)
     //     );
     //   ciphertextCharTallyElement.innerHTML = Object.entries(ciphertextCharTally)
     //     .sort(([_char1, tally1], [_char2, tally2]) => tally2 - tally1)
