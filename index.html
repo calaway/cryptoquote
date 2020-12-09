@@ -21,6 +21,7 @@
             id="ciphertext-input"
             placeholder="Enter Cryptoquote text"
           ></textarea>
+          <button id="reset">Reset</button>
         </div>
       </section>
       <hr />
@@ -142,12 +143,16 @@
         .join('<br />');
     }
 
-    localStorage.ciphertext = localStorage.ciphertext || '';
-    renderCiphertextInput();
-    renderCiphertext();
-    renderPlaintext();
-    addClickListeners();
-    renderCharTally();
+    function load() {
+      localStorage.ciphertext = localStorage.ciphertext || '';
+      renderCiphertextInput();
+      renderCiphertext();
+      renderPlaintext();
+      addClickListeners();
+      renderCharTally();
+    }
+
+    load();
 
     ciphertextInputElement.addEventListener('input', (event) => {
       localStorage.ciphertext = event.target.value.toUpperCase();
@@ -222,5 +227,12 @@
       .forEach((hideButton) =>
         hideButton.addEventListener('click', toggleHideNextElement)
       );
+
+    function reset() {
+      localStorage.clear();
+      load();
+    }
+
+    document.querySelector('#reset').addEventListener('click', reset);
   </script>
 </html>
