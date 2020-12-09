@@ -11,12 +11,18 @@
       <h1>Cryptoquote</h1>
       <hr />
 
-      <h4>Enter ciphertext</h4>
-      <button class="hide-button">Hide</button>
-      <textarea
-        id="ciphertext-input"
-        placeholder="Enter Cryptoquote text"
-      ></textarea>
+      <section>
+        <hgroup>
+          <h4>Enter ciphertext</h4>
+          <button class="hide-button">Hide</button>
+        </hgroup>
+        <div class="hideable">
+          <textarea
+            id="ciphertext-input"
+            placeholder="Enter Cryptoquote text"
+          ></textarea>
+        </div>
+      </section>
       <hr />
 
       <h4>Ciphertext</h4>
@@ -41,6 +47,11 @@
     #main {
       width: 50%;
       margin: auto;
+    }
+    hgroup {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     #ciphertext-input {
       width: 100%;
@@ -184,9 +195,11 @@
     document.addEventListener('keyup', handleKeyStroke);
 
     function toggleHideNextElement(event) {
-      const nextElementSibling = event.target.nextElementSibling;
-      nextElementSibling.toggleAttribute('hidden');
-      if (nextElementSibling.hidden) {
+      const hideableElement = event.target.parentElement.parentElement.querySelector(
+        '.hideable'
+      );
+      hideableElement.toggleAttribute('hidden');
+      if (hideableElement.hidden) {
         event.target.innerHTML = 'Show';
       } else {
         event.target.innerHTML = 'Hide';
