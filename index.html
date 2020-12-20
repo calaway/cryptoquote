@@ -120,6 +120,14 @@
           (char) => `<span class='char' data-ciphertext-char=${char}>_</span>`
         )
         .replace(/\n/g, '<br />');
+      document
+        .querySelectorAll('p#plaintext .char')
+        .forEach((plaintextCharElement) => {
+          plaintextCharElement.innerHTML =
+            translationMap[
+              plaintextCharElement.getAttribute('data-ciphertext-char')
+            ] || '_';
+        });
     }
 
     function addClickListeners() {
@@ -184,6 +192,19 @@
       selectedChar = null;
     }
 
+    function handleDummyInputKeyUp(event) {
+      if (!selectedChar) return;
+      const key = event.key;
+      if (key === 'Escape') {
+        unselectChar();
+      } else if (key === 'Backspace' || key === 'Delete') {
+        delete translationMap[selectedChar];
+        renderPlaintext();
+        addClickListeners();
+        unselectChar();
+      }
+    }
+
     function handleDummyInput() {
       const dummyInputValue = dummyInput.value.toUpperCase();
       dummyInput.value = null;
@@ -205,19 +226,14 @@
       );
 
       translationMap[selectedChar] = dummyInputValue;
-      document
-        .querySelectorAll('p#plaintext .char')
-        .forEach((plaintextCharElement) => {
-          plaintextCharElement.innerHTML =
-            translationMap[
-              plaintextCharElement.getAttribute('data-ciphertext-char')
-            ] || '_';
-        });
+      renderPlaintext();
+      addClickListeners();
 
       dummyInput.blur();
     }
 
     // The purpose of this dummy input is twofold: 1) mobile keyboards won't come up unless an input field is in focus, and 2) mobile keyboards (specifically Android) don't recognize the `event.key` on keydown/keyup events, so this captures the key by reading the input value.
+    dummyInput.addEventListener('keyup', handleDummyInputKeyUp);
     dummyInput.addEventListener('input', handleDummyInput);
     dummyInput.addEventListener('blur', unselectChar);
 
