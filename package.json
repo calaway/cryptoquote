@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "browser-sync start --server --watch ."
+    "dev": "browser-sync start --server --watch .",
+    "cypress:open": "cypress open",
+    "test": "cypress run"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/calaway/cryptoquote#readme",
   "devDependencies": {
     "browser-sync": "^2.26.13",
+    "cypress": "^6.1.0",
     "prettier": "2.2.1"
   }
 }
