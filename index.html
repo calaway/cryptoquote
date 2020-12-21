@@ -176,14 +176,12 @@
         .map((char) => `<span class='char'>${char}</span>`)
         .join('');
       usedLettersElement.innerHTML = usedLetters
-        .map(
-          (char) =>
-            `<span class='char' data-ciphertext-char=${
-              Object.entries(translationMap).find(
-                ([key, value]) => value === char
-              )[0]
-            } data-used-letter>${char}</span>`
-        )
+        .map((char) => {
+          const dataCiphertextChar = Object.entries(translationMap).find(
+            ([key, value]) => value === char
+          )[0];
+          return `<span class='char' data-ciphertext-char=${dataCiphertextChar} data-used-letter>${char}</span>`;
+        })
         .join('');
     }
 
