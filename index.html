@@ -196,7 +196,10 @@
         );
       ciphertextCharTallyElement.innerHTML = Object.entries(ciphertextCharTally)
         .sort(([_char1, tally1], [_char2, tally2]) => tally2 - tally1)
-        .map(([char, tally]) => `${char}: ${tally}`)
+        .map(
+          ([char, tally]) =>
+            `<span class="char" data-ciphertext-char=${char}>${char}</span>: ${tally}`
+        )
         .join('<br />');
     }
 
@@ -206,8 +209,8 @@
       renderCiphertext();
       renderPlaintext();
       renderAlphabet();
-      addClickListeners();
       renderCharTally();
+      addClickListeners();
     }
 
     load();
@@ -217,8 +220,8 @@
       renderCiphertextInput();
       renderCiphertext();
       renderPlaintext();
-      addClickListeners();
       renderCharTally();
+      addClickListeners();
     });
 
     function unselectChar() {
