@@ -188,6 +188,7 @@
     function renderCharTally() {
       const ciphertextCharTally = {};
       localStorage.ciphertext
+        .replace(/[^A-Z]/g, '')
         .split('')
         .forEach((char) =>
           ciphertextCharTally[char]
