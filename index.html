@@ -199,10 +199,12 @@
         );
       ciphertextCharTallyElement.innerHTML = Object.entries(ciphertextCharTally)
         .sort(([_char1, tally1], [_char2, tally2]) => tally2 - tally1)
-        .map(
-          ([char, tally]) =>
-            `<span class="char" data-ciphertext-char=${char}>${char}</span>: ${tally}`
-        )
+        .map(([char, tally]) => {
+          const isUsedLetter = Object.keys(translationMap).includes(char);
+          return `<span ${
+            isUsedLetter ? 'data-used-letter' : ''
+          }><span class="char" data-ciphertext-char=${char}>${char}</span>: ${tally}</span>`;
+        })
         .join('<br />');
     }
 
@@ -245,6 +247,7 @@
         renderCiphertext();
         renderPlaintext();
         renderUsedLetters();
+        renderCharTally();
         addClickListeners();
         unselectChar();
       }
@@ -274,6 +277,7 @@
       renderCiphertext();
       renderPlaintext();
       renderUsedLetters();
+      renderCharTally();
       addClickListeners();
 
       dummyInput.blur();
