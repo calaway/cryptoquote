@@ -122,11 +122,12 @@
 
     function renderCiphertext() {
       ciphertextElement.innerHTML = localStorage.ciphertext
-        .replace(
-          /\w/g,
-          (char) =>
-            `<span class='char' data-ciphertext-char=${char}>${char}</span>`
-        )
+        .replace(/\w/g, (char) => {
+          const isUsedLetter = Object.keys(translationMap).includes(char);
+          return `<span class='char' data-ciphertext-char=${char} ${
+            isUsedLetter ? 'data-used-letter' : ''
+          }>${char}</span>`;
+        })
         .replace(/\n/g, '<br />');
     }
 
@@ -240,6 +241,7 @@
         unselectChar();
       } else if (key === 'Backspace' || key === 'Delete') {
         delete translationMap[selectedChar];
+        renderCiphertext();
         renderPlaintext();
         renderUsedLetters();
         addClickListeners();
@@ -268,6 +270,7 @@
       );
 
       translationMap[selectedChar] = dummyInputValue;
+      renderCiphertext();
       renderPlaintext();
       renderUsedLetters();
       addClickListeners();
