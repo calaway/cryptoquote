@@ -241,6 +241,7 @@
       } else if (key === 'Backspace' || key === 'Delete') {
         delete translationMap[selectedChar];
         renderPlaintext();
+        renderAlphabet();
         addClickListeners();
         unselectChar();
       }
