@@ -166,7 +166,7 @@
       });
     }
 
-    function renderAlphabet() {
+    function renderUsedLetters() {
       const usedLetters = Object.values(translationMap).sort();
       const unusedLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         .split('')
@@ -209,7 +209,7 @@
       renderCiphertextInput();
       renderCiphertext();
       renderPlaintext();
-      renderAlphabet();
+      renderUsedLetters();
       renderCharTally();
       addClickListeners();
     }
@@ -241,7 +241,7 @@
       } else if (key === 'Backspace' || key === 'Delete') {
         delete translationMap[selectedChar];
         renderPlaintext();
-        renderAlphabet();
+        renderUsedLetters();
         addClickListeners();
         unselectChar();
       }
@@ -269,7 +269,7 @@
 
       translationMap[selectedChar] = dummyInputValue;
       renderPlaintext();
-      renderAlphabet();
+      renderUsedLetters();
       addClickListeners();
 
       dummyInput.blur();
