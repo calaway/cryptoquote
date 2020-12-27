@@ -138,13 +138,19 @@
 
     function renderCiphertext() {
       ciphertextElement.innerHTML = localStorage.ciphertext
-        .replace(/\w/g, (char) => {
-          const isUsedLetter = Object.keys(translationMap).includes(char);
-          return `<span class="char" data-ciphertext-char=${char} ${
-            isUsedLetter ? 'data-used-letter' : ''
-          }>${char}</span>`;
+        .split('')
+        .map((char) => {
+          if (Object.keys(translationMap).includes(char)) {
+            return `<span class="char" data-ciphertext-char=${char} data-used-letter>${char}</span>`;
+          } else if (/[A-Z]/.test(char)) {
+            return `<span class="char" data-ciphertext-char=${char}>${char}</span>`;
+          } else if (char === '\n') {
+            return '<br />';
+          } else {
+            return char;
+          }
         })
-        .replace(/\n/g, '<br />');
+        .join('');
     }
 
     function renderPlaintext() {
