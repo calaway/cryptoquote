@@ -128,6 +128,17 @@
     let translationMap = {};
 
     /**
+     * Update state
+     */
+    function updateCiphertext(newCiphertext) {
+      localStorage.ciphertext = newCiphertext.toUpperCase();
+      renderCiphertext();
+      renderPlaintext();
+      renderCharTally();
+      addClickListeners();
+    }
+
+    /**
      * Update DOM
      */
     function renderCiphertextInput() {
@@ -288,17 +299,13 @@
     function reset() {
       localStorage.clear();
       translationMap = {};
-      load();
+      updateCiphertext('');
     }
 
     function load() {
-      localStorage.ciphertext = localStorage.ciphertext || '';
+      ciphertext = localStorage.ciphertext || '';
+      updateCiphertext(ciphertext);
       renderCiphertextInput();
-      renderCiphertext();
-      renderPlaintext();
-      renderUsedLetters();
-      renderCharTally();
-      addClickListeners();
     }
 
     function clear() {
@@ -323,13 +330,9 @@
     /**
      * Add event listeners
      */
-    ciphertextInputElement.addEventListener('input', (event) => {
-      localStorage.ciphertext = event.target.value.toUpperCase();
-      renderCiphertext();
-      renderPlaintext();
-      renderCharTally();
-      addClickListeners();
-    });
+    ciphertextInputElement.addEventListener('input', (event) =>
+      updateCiphertext(event.target.value)
+    );
 
     // The purpose of this dummy input is twofold: 1) mobile keyboards won't come up unless an input field is in focus, and 2) mobile keyboards (specifically Android) don't recognize the `event.key` on keydown/keyup events, so this captures the key by reading the input value.
     dummyInput.addEventListener('keyup', handleDummyInputKeyUp);
