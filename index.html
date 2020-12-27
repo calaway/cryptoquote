@@ -105,6 +105,9 @@
   </style>
 
   <script>
+    /**
+     * HTML elements
+     */
     const ciphertextInputElement = document.querySelector('#ciphertext-input');
     const ciphertextElement = document.querySelector('#ciphertext');
     const plaintextElement = document.querySelector('#plaintext');
@@ -114,9 +117,16 @@
       '#ciphertext-char-tally'
     );
     const dummyInput = document.querySelector('#dummy-input');
+
+    /*
+     * Global variables
+     */
     let selectedChar;
     let translationMap = {};
 
+    /*
+     * Update DOM
+     */
     function renderCiphertextInput() {
       ciphertextInputElement.value = localStorage.ciphertext;
     }
@@ -147,25 +157,6 @@
               plaintextCharElement.getAttribute('data-ciphertext-char')
             ] || '_';
         });
-    }
-
-    function addClickListeners() {
-      const allCharElements = document.querySelectorAll('.char');
-      allCharElements.forEach((charElement) => {
-        charElement.addEventListener('click', () => {
-          allCharElements.forEach((charElement) =>
-            charElement.classList.remove('highlight')
-          );
-          selectedChar = charElement.getAttribute('data-ciphertext-char');
-          const selectedCharElements = document.querySelectorAll(
-            `.char[data-ciphertext-char=${selectedChar}`
-          );
-          selectedCharElements.forEach((selectedCharElement) =>
-            selectedCharElement.classList.add('highlight')
-          );
-          dummyInput.focus();
-        });
-      });
     }
 
     function renderUsedLetters() {
@@ -211,26 +202,24 @@
         .join('<br />');
     }
 
-    function load() {
-      localStorage.ciphertext = localStorage.ciphertext || '';
-      renderCiphertextInput();
-      renderCiphertext();
-      renderPlaintext();
-      renderUsedLetters();
-      renderCharTally();
-      addClickListeners();
+    function addClickListeners() {
+      const allCharElements = document.querySelectorAll('.char');
+      allCharElements.forEach((charElement) => {
+        charElement.addEventListener('click', () => {
+          allCharElements.forEach((charElement) =>
+            charElement.classList.remove('highlight')
+          );
+          selectedChar = charElement.getAttribute('data-ciphertext-char');
+          const selectedCharElements = document.querySelectorAll(
+            `.char[data-ciphertext-char=${selectedChar}`
+          );
+          selectedCharElements.forEach((selectedCharElement) =>
+            selectedCharElement.classList.add('highlight')
+          );
+          dummyInput.focus();
+        });
+      });
     }
-
-    load();
-
-    ciphertextInputElement.addEventListener('input', (event) => {
-      localStorage.ciphertext = event.target.value.toUpperCase();
-      renderCiphertextInput();
-      renderCiphertext();
-      renderPlaintext();
-      renderCharTally();
-      addClickListeners();
-    });
 
     function unselectChar() {
       document
@@ -286,10 +275,26 @@
       dummyInput.blur();
     }
 
-    // The purpose of this dummy input is twofold: 1) mobile keyboards won't come up unless an input field is in focus, and 2) mobile keyboards (specifically Android) don't recognize the `event.key` on keydown/keyup events, so this captures the key by reading the input value.
-    dummyInput.addEventListener('keyup', handleDummyInputKeyUp);
-    dummyInput.addEventListener('input', handleDummyInput);
-    dummyInput.addEventListener('blur', unselectChar);
+    function reset() {
+      localStorage.clear();
+      translationMap = {};
+      load();
+    }
+
+    function load() {
+      localStorage.ciphertext = localStorage.ciphertext || '';
+      renderCiphertextInput();
+      renderCiphertext();
+      renderPlaintext();
+      renderUsedLetters();
+      renderCharTally();
+      addClickListeners();
+    }
+
+    function clear() {
+      translationMap = {};
+      load();
+    }
 
     function toggleHideNextElement(event) {
       const hideableElement = event.target.parentElement.parentElement.querySelector(
@@ -303,24 +308,32 @@
       }
     }
 
+    load();
+
+    /*
+     * Add event listeners
+     */
+    ciphertextInputElement.addEventListener('input', (event) => {
+      localStorage.ciphertext = event.target.value.toUpperCase();
+      renderCiphertextInput();
+      renderCiphertext();
+      renderPlaintext();
+      renderCharTally();
+      addClickListeners();
+    });
+
+    // The purpose of this dummy input is twofold: 1) mobile keyboards won't come up unless an input field is in focus, and 2) mobile keyboards (specifically Android) don't recognize the `event.key` on keydown/keyup events, so this captures the key by reading the input value.
+    dummyInput.addEventListener('keyup', handleDummyInputKeyUp);
+    dummyInput.addEventListener('input', handleDummyInput);
+    dummyInput.addEventListener('blur', unselectChar);
+
     document
       .querySelectorAll('.hide-button')
       .forEach((hideButton) =>
         hideButton.addEventListener('click', toggleHideNextElement)
       );
 
-    function reset() {
-      localStorage.clear();
-      translationMap = {};
-      load();
-    }
-
     document.querySelector('#reset').addEventListener('click', reset);
-
-    function clear() {
-      translationMap = {};
-      load();
-    }
 
     document.querySelector('#clear').addEventListener('click', clear);
   </script>
