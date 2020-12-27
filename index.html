@@ -315,7 +315,6 @@
      */
     ciphertextInputElement.addEventListener('input', (event) => {
       localStorage.ciphertext = event.target.value.toUpperCase();
-      renderCiphertextInput();
       renderCiphertext();
       renderPlaintext();
       renderCharTally();

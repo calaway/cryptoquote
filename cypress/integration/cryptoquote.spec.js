@@ -5,7 +5,7 @@ describe('Cryptoquote', () => {
 
       cy.get('#ciphertext-input').type('Ejwb zdbpwn psdh’r.');
 
-      cy.get('#ciphertext-input').should('have.value', 'EJWB ZDBPWN PSDH’R.');
+      cy.get('#ciphertext-input').should('have.value', 'Ejwb zdbpwn psdh’r.');
       cy.get('#ciphertext').should('have.text', 'EJWB ZDBPWN PSDH’R.');
       cy.get('#plaintext').should('have.text', '____ ______ ____’_.');
     });
@@ -19,7 +19,7 @@ describe('Cryptoquote', () => {
         cy.get('[data-ciphertext-char="B"]').first().click().type('b');
         cy.get('[data-ciphertext-char="E"]').first().click().type('C');
 
-        cy.get('#ciphertext-input').should('have.value', 'EJWB ZDBPWN PSDH’R.');
+        cy.get('#ciphertext-input').should('have.value', 'Ejwb zdbpwn psdh’r.');
         cy.get('#ciphertext').should('have.text', 'EJWB ZDBPWN PSDH’R.');
         cy.get('#plaintext').should('have.text', 'C__B _AB___ __A_’_.');
 
@@ -29,7 +29,7 @@ describe('Cryptoquote', () => {
           .type('{backspace}');
         cy.get('[data-ciphertext-char="E"]').first().click().type('{del}');
 
-        cy.get('#ciphertext-input').should('have.value', 'EJWB ZDBPWN PSDH’R.');
+        cy.get('#ciphertext-input').should('have.value', 'Ejwb zdbpwn psdh’r.');
         cy.get('#ciphertext').should('have.text', 'EJWB ZDBPWN PSDH’R.');
         cy.get('#plaintext').should('have.text', '___B __B___ ____’_.');
       });
