@@ -94,6 +94,11 @@
     .char {
       margin-right: 0.05rem;
     }
+    #plaintext .char {
+      text-decoration: underline;
+      text-decoration-color: black;
+      text-decoration-thickness: 1px;
+    }
     [data-used-letter] {
       color: gray;
       text-decoration: line-through;
@@ -149,7 +154,8 @@
           if (translationMap[char]) {
             return `<span class="char" data-ciphertext-char=${char}>${translationMap[char]}</span>`;
           } else if (/[A-Z]/.test(char)) {
-            return `<span class="char" data-ciphertext-char=${char} data-blank-char>_</span>`;
+            // Using '_' instead of ' ' for testability
+            return `<span class="char" data-ciphertext-char=${char} style='color: transparent;'>_</span>`;
           } else if (char === '\n') {
             return '<br />';
           } else {
