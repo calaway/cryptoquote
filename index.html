@@ -169,7 +169,7 @@
           if (translationMap[char]) {
             return `<span class="char" data-ciphertext-char=${char}>${translationMap[char]}</span>`;
           } else if (/[A-Z]/.test(char)) {
-            // Using '_' instead of ' ' for testability
+            // Using transparent '_' instead of ' ' for testability
             return `<span class="char" data-ciphertext-char=${char} style='color: transparent;'>_</span>`;
           } else if (char === '\n') {
             return '<br />';
@@ -299,7 +299,7 @@
     function reset() {
       localStorage.clear();
       translationMap = {};
-      updateCiphertext('');
+      load();
     }
 
     function load() {

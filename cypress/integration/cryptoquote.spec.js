@@ -25,4 +25,20 @@ describe('Cryptoquote', () => {
       cy.get('#plaintext').should('have.text', '___B __B___ ____’_.');
     });
   });
+
+  context('when resetting the game', () => {
+    it('resets the ciphertext input, ciphertext, and plaintext', () => {
+      cy.visit('http://localhost:3000');
+      cy.get('#ciphertext-input').type('Ejwb zdbpwn psdh’r.');
+      cy.get('[data-ciphertext-char="D"]').first().click().type('a');
+      cy.get('[data-ciphertext-char="B"]').first().click().type('b');
+      cy.get('[data-ciphertext-char="E"]').first().click().type('C');
+
+      cy.get('#reset').click();
+
+      cy.get('#ciphertext-input').should('have.value', '');
+      cy.get('#ciphertext').should('have.text', '');
+      cy.get('#plaintext').should('have.text', '');
+    });
+  });
 });
