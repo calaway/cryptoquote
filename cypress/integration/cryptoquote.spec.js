@@ -56,4 +56,24 @@ describe('Cryptoquote', () => {
       cy.get('#used-letters').should('have.text', '');
     });
   });
+
+  context('when clearing the translation map', () => {
+    it('clears the plaintext', () => {
+      cy.visit('/');
+      cy.get('#ciphertext-input').type('Ejwb zdbpwn psdh’r.');
+      cy.get('[data-ciphertext-char="D"]').first().click().type('a');
+      cy.get('[data-ciphertext-char="B"]').first().click().type('b');
+      cy.get('[data-ciphertext-char="E"]').first().click().type('C');
+      cy.get('#clear').click();
+
+      cy.get('#ciphertext-input').should('have.value', 'EJWB ZDBPWN PSDH’R.');
+      cy.get('#ciphertext').should('have.text', 'EJWB ZDBPWN PSDH’R.');
+      cy.get('#plaintext').should('have.text', '____ ______ ____’_.');
+      cy.get('#unused-letters').should(
+        'have.text',
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+      );
+      cy.get('#used-letters').should('have.text', '');
+    });
+  });
 });
