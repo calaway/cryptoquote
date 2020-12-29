@@ -1,8 +1,7 @@
 describe('Cryptoquote', () => {
   context('when entering ciphertext, assigning, and deleting letters', () => {
     it('the correct ciphertext and plaintext is displayed', () => {
-      cy.visit('http://localhost:3000');
-
+      cy.visit('/');
       cy.get('#ciphertext-input').type('Ejwb zdbpwn psdh’r.');
 
       cy.get('#ciphertext-input').should('have.value', 'Ejwb zdbpwn psdh’r.');
@@ -28,7 +27,7 @@ describe('Cryptoquote', () => {
 
   context('when resetting the game', () => {
     it('resets the ciphertext input, ciphertext, and plaintext', () => {
-      cy.visit('http://localhost:3000');
+      cy.visit('/');
       cy.get('#ciphertext-input').type('Ejwb zdbpwn psdh’r.');
       cy.get('[data-ciphertext-char="D"]').first().click().type('a');
       cy.get('[data-ciphertext-char="B"]').first().click().type('b');
