@@ -70,6 +70,7 @@
     html {
       font-family: 'Courier New', Courier, monospace;
       font-size: x-large;
+      overflow-wrap: break-word;
       background-image: url(./images/background.jpg);
       background-size: cover;
     }
@@ -193,17 +194,14 @@
         .filter((char) => !usedLetters.includes(char));
 
       unusedLettersElement.innerHTML = unusedLetters
-        .map(
-          (char) =>
-            `<span class="char" style="overflow-wrap: anywhere;">${char}</span>`
-        )
+        .map((char) => `<span class="char">${char}</span>`)
         .join('');
       usedLettersElement.innerHTML = usedLetters
         .map((char) => {
           const dataCiphertextChar = Object.entries(translationMap).find(
             ([key, value]) => value === char
           )[0];
-          return `<span class="char" data-ciphertext-char="${dataCiphertextChar}" data-used-letter style="overflow-wrap: anywhere;">${char}</span>`;
+          return `<span class="char" data-ciphertext-char="${dataCiphertextChar}" data-used-letter>${char}</span>`;
         })
         .join('');
     }
