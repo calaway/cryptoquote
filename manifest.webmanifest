@@ -1,0 +1,22 @@
+{
+  "short_name": "Cryptoquote",
+  "name": "Cryptoquote",
+  "description": "Solve cryptoquote puzzles",
+  "icons": [
+    {
+      "src": "/images/icon-144.svg",
+      "type": "image/svg",
+      "sizes": "144x144"
+    },
+    {
+      "src": "/images/icon-144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#3367D6",
+  "display": "minimal-ui",
+  "scope": "/",
+  "theme_color": "#3367D6"
+}
