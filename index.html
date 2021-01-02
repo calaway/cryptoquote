@@ -214,6 +214,10 @@
             ? (ciphertextCharTally[char] += 1)
             : (ciphertextCharTally[char] = 1)
         );
+      const rowCount = Math.ceil(Object.keys(ciphertextCharTally).length / 3);
+      ciphertextCharTallyElement.style[
+        'grid-template-rows'
+      ] = `repeat(${rowCount}, auto`;
       ciphertextCharTallyElement.innerHTML = Object.entries(ciphertextCharTally)
         .sort(([_char1, tally1], [_char2, tally2]) => tally2 - tally1)
         .map(([char, tally]) => {
