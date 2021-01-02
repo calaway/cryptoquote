@@ -1,6 +1,8 @@
 # Cryptoqote
 
-A web app for solving cryptoquote puzzes.
+A web app for solving cryptoquote puzzes like this one.
+
+<div style="text-align:center"><img src="readme/cryptoquote.jpg" alt="sample cryptoquote"></img></div>
 
 Ready to play? Visit the [web app here](https://calaway.github.io/cryptoquote/). Here is a sample puzzle you can work on.
 
