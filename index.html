@@ -15,17 +15,17 @@
       <hr />
 
       <section>
-        <hgroup>
-          <h4>Enter encrypted text</h4>
-          <button class="hide-button">Collapse</button>
-        </hgroup>
-        <div class="hideable">
-          <textarea
-            id="ciphertext-input"
-            placeholder="Enter encrypted text"
-          ></textarea>
+        <h4>Enter encrypted text</h4>
+        <details open>
+          <summary></summary>
+          <div id="ciphertext-input-container">
+            <textarea
+              id="ciphertext-input"
+              placeholder="Enter encrypted text"
+            ></textarea>
+          </div>
           <button id="reset">Reset</button>
-        </div>
+        </details>
       </section>
       <hr />
 
@@ -54,13 +54,10 @@
       <hr />
 
       <section>
-        <hgroup>
-          <h4>Hint: Character counts</h4>
-          <button class="hide-button">Show</button>
-        </hgroup>
-        <div class="hideable" hidden>
+        <details>
+          <summary>Hint: Character counts</summary>
           <p id="ciphertext-char-tally"></p>
-        </div>
+        </details>
       </section>
     </main>
   </body>
@@ -81,6 +78,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+    #ciphertext-input-container {
+      padding: 0 20px 0 20px;
     }
     #ciphertext-input {
       width: 100%;
@@ -317,18 +317,6 @@
       load();
     }
 
-    function toggleHideNextElement(event) {
-      const hideableElement = event.target.parentElement.parentElement.querySelector(
-        '.hideable'
-      );
-      hideableElement.toggleAttribute('hidden');
-      if (hideableElement.hidden) {
-        event.target.innerHTML = 'Show';
-      } else {
-        event.target.innerHTML = 'Hide';
-      }
-    }
-
     load();
 
     /**
@@ -342,12 +330,6 @@
     dummyInput.addEventListener('keyup', handleDummyInputKeyUp);
     dummyInput.addEventListener('input', handleDummyInput);
     dummyInput.addEventListener('blur', unselectChar);
-
-    document
-      .querySelectorAll('.hide-button')
-      .forEach((hideButton) =>
-        hideButton.addEventListener('click', toggleHideNextElement)
-      );
 
     document.querySelector('#reset').addEventListener('click', reset);
 
