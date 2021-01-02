@@ -15,7 +15,7 @@
       <hr />
 
       <section>
-        <h4>Enter encrypted text</h4>
+        <h5>Enter encrypted text</h5>
         <details open>
           <summary></summary>
           <div id="ciphertext-input-container">
@@ -41,12 +41,11 @@
       <hr />
 
       <section>
+        <h5>Remaining letters</h5>
         <p>
-          <span style="font-weight: bold">Unused:</span>
           <span id="unused-letters"></span>
         </p>
         <p>
-          <span style="font-weight: bold">Used:</span>
           <span id="used-letters"></span>
         </p>
       </section>
@@ -72,6 +71,11 @@
     #main {
       max-width: 500px;
       margin: auto;
+    }
+    h1,
+    h5 {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
     }
     #ciphertext-input-container {
       padding: 0 20px 0 20px;
