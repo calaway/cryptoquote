@@ -59,8 +59,12 @@
       </section>
 
       <section>
-        <details open>
+        <details>
           <summary>Hint: Suggestions</summary>
+          <p>
+            Click a word below to generate a list of frequently used English
+            words matching the same letter pattern.
+          </p>
           <p id="suggestions-ciphertext"></p>
           <p id="suggestions-list"></p>
         </details>
@@ -381,9 +385,11 @@
             );
           });
       });
-      suggestionsListElement.innerHTML = `${
-        words.length
-      } match(es) found:<br />${words.join(', ')}`;
+      suggestionsListElement.innerHTML = `${words.length} ${
+        words.length === 1 ? 'match' : 'matches'
+      } found:<br />${words.slice(0, 100).join(', ')}${
+        words.length > 100 ? ', ...' : ''
+      }`;
     });
 
     /**
