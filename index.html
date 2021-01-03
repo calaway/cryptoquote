@@ -282,8 +282,8 @@
           .forEach((charB, indexB) => {
             words = words.filter(
               (word) =>
-                (clickedWord[indexA] === clickedWord[indexA + indexB]) ===
-                (word[indexA] === word[indexA + indexB])
+                (charA === charB) ===
+                (word[indexA] === word[indexA + indexB + 1])
             );
           });
       });
