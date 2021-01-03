@@ -287,7 +287,7 @@
         .join(', ')}${words.length > 100 ? ', ...' : ''}`;
       suggestionsListElement
         .querySelector('.suggested-word:last-of-type')
-        .scrollIntoView();
+        ?.scrollIntoView();
       suggestionsListElement
         .querySelectorAll('.suggested-word')
         .forEach((suggestedWord) => {
