@@ -242,9 +242,9 @@
         .sort(([_char1, tally1], [_char2, tally2]) => tally2 - tally1)
         .map(([char, tally]) => {
           const isUsedLetter = Object.keys(translationMap).includes(char);
-          return `<div class="char" data-ciphertext-char="${char}" ${
+          return `<div><span class="char" data-ciphertext-char="${char}" ${
             isUsedLetter ? 'data-used-letter' : ''
-          }>${char}: ${tally}</div>`;
+          }>${char}: ${tally}</span></div>`;
         })
         .join('');
     }
