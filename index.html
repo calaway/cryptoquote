@@ -89,7 +89,12 @@
       margin-top: 0.5em;
       margin-bottom: 0.5em;
     }
-    a {
+    a.unstyled-link {
+      text-decoration: none;
+      color: black;
+    }
+    #reset,
+    #clear {
       font-size: medium;
     }
     #ciphertext-input-container {
@@ -175,9 +180,9 @@
         .split('')
         .map((char) => {
           if (Object.keys(translationMap).includes(char)) {
-            return `<span class="char" data-ciphertext-char="${char}" data-used-letter>${char}</span>`;
+            return `<a href="#" class="char unstyled-link" data-ciphertext-char="${char}" data-used-letter>${char}</a>`;
           } else if (/[A-Z]/.test(char)) {
-            return `<span class="char" data-ciphertext-char="${char}">${char}</span>`;
+            return `<a href="#" class="char unstyled-link" data-ciphertext-char="${char}">${char}</a>`;
           } else if (char === '\n') {
             return '<br />';
           } else {
@@ -192,10 +197,10 @@
         .split('')
         .map((char) => {
           if (translationMap[char]) {
-            return `<span class="char" data-ciphertext-char="${char}">${translationMap[char]}</span>`;
+            return `<a href="#" class="char unstyled-link" data-ciphertext-char="${char}">${translationMap[char]}</a>`;
           } else if (/[A-Z]/.test(char)) {
             // Using transparent '_' instead of ' ' for testability
-            return `<span class="char" data-ciphertext-char="${char}" style='color: transparent;'>_</span>`;
+            return `<a href="#" class="char unstyled-link" data-ciphertext-char="${char}" style='color: transparent;'>_</a>`;
           } else if (char === '\n') {
             return '<br />';
           } else {
@@ -219,7 +224,7 @@
           const dataCiphertextChar = Object.entries(translationMap).find(
             ([key, value]) => value === char
           )[0];
-          return `<span class="char" data-ciphertext-char="${dataCiphertextChar}" data-used-letter>${char}</span>`;
+          return `<a href="#" class="char unstyled-link" data-ciphertext-char="${dataCiphertextChar}" data-used-letter>${char}</a>`;
         })
         .join('');
     }
@@ -242,9 +247,9 @@
         .sort(([_char1, tally1], [_char2, tally2]) => tally2 - tally1)
         .map(([char, tally]) => {
           const isUsedLetter = Object.keys(translationMap).includes(char);
-          return `<div><span class="char" data-ciphertext-char="${char}" ${
+          return `<div><a href="#" class="char unstyled-link" data-ciphertext-char="${char}" ${
             isUsedLetter ? 'data-used-letter' : ''
-          }>${char}: ${tally}</span></div>`;
+          }>${char}: ${tally}</a></div>`;
         })
         .join('');
     }
@@ -252,7 +257,7 @@
     async function renderSuggestionsCiphertext() {
       suggestionsCiphertextElement.innerHTML = localStorage.ciphertext.replace(
         /[\w'’]+/g,
-        (word) => `<span class="word">${word}</span>`
+        (word) => `<a href="#" class="word unstyled-link">${word}</a>`
       );
     }
 
@@ -283,7 +288,10 @@
         words.length === 1 ? 'match' : 'matches'
       } found (most common first):<br />${words
         .slice(0, 100)
-        .map((word) => `<span class="suggested-word">${word}</span>`)
+        .map(
+          (word) =>
+            `<a href="#" class="suggested-word unstyled-link">${word}</a>`
+        )
         .join(', ')}${words.length > 100 ? ', ...' : ''}`;
       suggestionsListElement
         .querySelector('.suggested-word:last-of-type')
