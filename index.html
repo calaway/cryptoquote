@@ -166,11 +166,11 @@
     /**
      * Update DOM
      */
-    function renderCiphertextInput() {
+    async function renderCiphertextInput() {
       ciphertextInputElement.value = localStorage.ciphertext;
     }
 
-    function renderCiphertext() {
+    async function renderCiphertext() {
       ciphertextElement.innerHTML = localStorage.ciphertext
         .split('')
         .map((char) => {
@@ -187,7 +187,7 @@
         .join('');
     }
 
-    function renderPlaintext() {
+    async function renderPlaintext() {
       plaintextElement.innerHTML = localStorage.ciphertext
         .split('')
         .map((char) => {
@@ -205,7 +205,7 @@
         .join('');
     }
 
-    function renderUsedLetters() {
+    async function renderUsedLetters() {
       const usedLetters = Object.values(translationMap).sort();
       const unusedLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         .split('')
@@ -224,7 +224,7 @@
         .join('');
     }
 
-    function renderCharTally() {
+    async function renderCharTally() {
       const ciphertextCharTally = {};
       localStorage.ciphertext
         .replace(/[^A-Z]/g, '')
@@ -249,7 +249,7 @@
         .join('');
     }
 
-    function renderSuggestionsCiphertext() {
+    async function renderSuggestionsCiphertext() {
       suggestionsCiphertextElement.innerHTML = localStorage.ciphertext.replace(
         /[\w'’]+/g,
         (word) => `<span class="word">${word}</span>`
