@@ -256,6 +256,36 @@
       );
     }
 
+    async function renderSuggestions(clickedWord) {
+      commonWords =
+        commonWords ||
+        (await fetch('src/words.txt')
+          .then((response) => response.text())
+          .then((txt) => txt.split('\n')));
+      let words = commonWords;
+      words = words.filter((word) => word.length === clickedWord.length);
+      clickedWord.split('').forEach((charA, indexA) => {
+        if (charA === "'" || charA === '’') {
+          words = words.filter((word) => word[indexA] === "'");
+        }
+        clickedWord
+          .slice(indexA + 1)
+          .split('')
+          .forEach((charB, indexB) => {
+            words = words.filter(
+              (word) =>
+                (clickedWord[indexA] === clickedWord[indexA + indexB]) ===
+                (word[indexA] === word[indexA + indexB])
+            );
+          });
+      });
+      suggestionsListElement.innerHTML = `${words.length} ${
+        words.length === 1 ? 'match' : 'matches'
+      } found (most common first):<br />${words.slice(0, 100).join(', ')}${
+        words.length > 100 ? ', ...' : ''
+      }`;
+    }
+
     function addClickListeners() {
       const allCharElements = document.querySelectorAll('.char');
       allCharElements.forEach((charElement) => {
@@ -365,36 +395,9 @@
 
     document.querySelector('#clear').addEventListener('click', clear);
 
-    suggestionsCiphertextElement.addEventListener('click', async (event) => {
-      commonWords =
-        commonWords ||
-        (await fetch('src/words.txt')
-          .then((response) => response.text())
-          .then((txt) => txt.split('\n')));
-      let words = commonWords;
-      const clickedWord = event.target.innerText;
-      words = words.filter((word) => word.length === clickedWord.length);
-      clickedWord.split('').forEach((charA, indexA) => {
-        if (charA === "'" || charA === '’') {
-          words = words.filter((word) => word[indexA] === "'");
-        }
-        clickedWord
-          .slice(indexA + 1)
-          .split('')
-          .forEach((charB, indexB) => {
-            words = words.filter(
-              (word) =>
-                (clickedWord[indexA] === clickedWord[indexA + indexB]) ===
-                (word[indexA] === word[indexA + indexB])
-            );
-          });
-      });
-      suggestionsListElement.innerHTML = `${words.length} ${
-        words.length === 1 ? 'match' : 'matches'
-      } found (most common first):<br />${words.slice(0, 100).join(', ')}${
-        words.length > 100 ? ', ...' : ''
-      }`;
-    });
+    suggestionsCiphertextElement.addEventListener('click', (event) =>
+      renderSuggestions(event.target.innerText)
+    );
 
     /**
      * Progressive web app offline fallback page
