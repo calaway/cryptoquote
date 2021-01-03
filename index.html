@@ -62,8 +62,8 @@
         <details>
           <summary>Hint: Suggestions</summary>
           <p>
-            Click a word below to generate a list of frequently used English
-            words matching the same letter pattern.
+            Click a word below to generate a list of common English words
+            matching the same letter pattern.
           </p>
           <p id="suggestions-ciphertext"></p>
           <p id="suggestions-list"></p>
@@ -149,6 +149,7 @@
      */
     let selectedChar;
     let translationMap = {};
+    let commonWords;
 
     /**
      * Update state
@@ -365,9 +366,12 @@
     document.querySelector('#clear').addEventListener('click', clear);
 
     suggestionsCiphertextElement.addEventListener('click', async (event) => {
-      let words = await fetch('src/words.txt')
-        .then((response) => response.text())
-        .then((txt) => txt.split('\n'));
+      commonWords =
+        commonWords ||
+        (await fetch('src/words.txt')
+          .then((response) => response.text())
+          .then((txt) => txt.split('\n')));
+      let words = commonWords;
       const clickedWord = event.target.innerText;
       words = words.filter((word) => word.length === clickedWord.length);
       clickedWord.split('').forEach((charA, indexA) => {
@@ -387,7 +391,7 @@
       });
       suggestionsListElement.innerHTML = `${words.length} ${
         words.length === 1 ? 'match' : 'matches'
-      } found:<br />${words.slice(0, 100).join(', ')}${
+      } found (most common first):<br />${words.slice(0, 100).join(', ')}${
         words.length > 100 ? ', ...' : ''
       }`;
     });
