@@ -256,7 +256,7 @@
       );
     }
 
-    async function renderSuggestions(clickedWord) {
+    async function renderSuggestionsList(clickedWord) {
       commonWords =
         commonWords ||
         (await fetch('src/words.txt')
@@ -419,7 +419,7 @@
     document.querySelector('#clear').addEventListener('click', clear);
 
     suggestionsCiphertextElement.addEventListener('click', (click) =>
-      renderSuggestions(click.target.innerText)
+      renderSuggestionsList(click.target.innerText)
     );
 
     /**
