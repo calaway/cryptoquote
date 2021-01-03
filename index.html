@@ -57,6 +57,14 @@
           <p id="ciphertext-char-tally"></p>
         </details>
       </section>
+
+      <section>
+        <details open>
+          <summary>Hint: Suggestions</summary>
+          <p id="suggestions-ciphertext"></p>
+          <p id="suggestions-list"></p>
+        </details>
+      </section>
     </main>
   </body>
 
@@ -126,6 +134,10 @@
     const ciphertextCharTallyElement = document.querySelector(
       '#ciphertext-char-tally'
     );
+    const suggestionsCiphertextElement = document.querySelector(
+      '#suggestions-ciphertext'
+    );
+    const suggestionsListElement = document.querySelector('#suggestions-list');
     const dummyInput = document.querySelector('#dummy-input');
 
     /**
@@ -142,6 +154,7 @@
       renderCiphertext();
       renderPlaintext();
       renderCharTally();
+      renderSuggestionsCiphertext();
       addClickListeners();
     }
 
@@ -229,6 +242,13 @@
           }>${char}: ${tally}</div>`;
         })
         .join('');
+    }
+
+    function renderSuggestionsCiphertext() {
+      suggestionsCiphertextElement.innerHTML = localStorage.ciphertext.replace(
+        /[\w'’]+/g,
+        (word) => `<span class="word">${word}</span>`
+      );
     }
 
     function addClickListeners() {
@@ -339,6 +359,32 @@
     document.querySelector('#reset').addEventListener('click', reset);
 
     document.querySelector('#clear').addEventListener('click', clear);
+
+    suggestionsCiphertextElement.addEventListener('click', async (event) => {
+      let words = await fetch('src/words.txt')
+        .then((response) => response.text())
+        .then((txt) => txt.split('\n'));
+      const clickedWord = event.target.innerText;
+      words = words.filter((word) => word.length === clickedWord.length);
+      clickedWord.split('').forEach((charA, indexA) => {
+        if (charA === "'" || charA === '’') {
+          words = words.filter((word) => word[indexA] === "'");
+        }
+        clickedWord
+          .slice(indexA + 1)
+          .split('')
+          .forEach((charB, indexB) => {
+            words = words.filter(
+              (word) =>
+                (clickedWord[indexA] === clickedWord[indexA + indexB]) ===
+                (word[indexA] === word[indexA + indexB])
+            );
+          });
+      });
+      suggestionsListElement.innerHTML = `${
+        words.length
+      } match(es) found:<br />${words.join(', ')}`;
+    });
 
     /**
      * Progressive web app offline fallback page
