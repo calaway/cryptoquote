@@ -281,9 +281,29 @@
       });
       suggestionsListElement.innerHTML = `${words.length} ${
         words.length === 1 ? 'match' : 'matches'
-      } found (most common first):<br />${words.slice(0, 100).join(', ')}${
-        words.length > 100 ? ', ...' : ''
-      }`;
+      } found (most common first):<br />${words
+        .slice(0, 100)
+        .map((word) => `<span class="suggested-word">${word}</span>`)
+        .join(', ')}${words.length > 100 ? ', ...' : ''}`;
+      suggestionsListElement
+        .querySelectorAll('.suggested-word')
+        .forEach((suggestedWord) => {
+          suggestedWord.addEventListener('click', (click) => {
+            click.target.innerText
+              .replace(/\W/g, '')
+              .split('')
+              .forEach((char, index) => {
+                const ciphertextChar = clickedWord.replace(/\W/g, '')[index];
+                translationMap[ciphertextChar] = char.toUpperCase();
+              });
+            renderCiphertext();
+            renderPlaintext();
+            renderUsedLetters();
+            renderCharTally();
+            addClickListeners();
+            unselectChar();
+          });
+        });
     }
 
     function addClickListeners() {
@@ -395,8 +415,8 @@
 
     document.querySelector('#clear').addEventListener('click', clear);
 
-    suggestionsCiphertextElement.addEventListener('click', (event) =>
-      renderSuggestions(event.target.innerText)
+    suggestionsCiphertextElement.addEventListener('click', (click) =>
+      renderSuggestions(click.target.innerText)
     );
 
     /**
