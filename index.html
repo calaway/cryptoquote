@@ -286,6 +286,9 @@
         .map((word) => `<span class="suggested-word">${word}</span>`)
         .join(', ')}${words.length > 100 ? ', ...' : ''}`;
       suggestionsListElement
+        .querySelector('.suggested-word:last-of-type')
+        .scrollIntoView();
+      suggestionsListElement
         .querySelectorAll('.suggested-word')
         .forEach((suggestedWord) => {
           suggestedWord.addEventListener('click', (click) => {
