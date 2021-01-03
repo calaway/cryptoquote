@@ -339,5 +339,14 @@
     document.querySelector('#reset').addEventListener('click', reset);
 
     document.querySelector('#clear').addEventListener('click', clear);
+
+    /**
+     * Progressive web app offline fallback page
+     */
+    window.addEventListener('load', () => {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('src/service-worker.js');
+      }
+    });
   </script>
 </html>
