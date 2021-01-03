@@ -258,10 +258,12 @@
     }
 
     async function renderSuggestionsCiphertext() {
-      suggestionsCiphertextElement.innerHTML = localStorage.ciphertext.replace(
-        /[\w'’]+/g,
-        (word) => `<a href="#" class="word unstyled-link">${word}</a>`
-      );
+      suggestionsCiphertextElement.innerHTML = localStorage.ciphertext
+        .replace(
+          /[\w'’]+/g,
+          (word) => `<a href="#" class="word unstyled-link">${word}</a>`
+        )
+        .replace(/\n/g, '<br />');
     }
 
     async function renderSuggestionsList(clickedWord) {
