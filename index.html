@@ -279,6 +279,11 @@
         if (charA === "'" || charA === '’') {
           words = words.filter((word) => word[indexA] === "'");
         }
+        if (translationMap[charA]) {
+          words = words.filter(
+            (word) => word[indexA].toUpperCase() === translationMap[charA]
+          );
+        }
         clickedWord
           .slice(indexA + 1)
           .split('')
