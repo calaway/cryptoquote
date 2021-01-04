@@ -283,6 +283,11 @@
           words = words.filter(
             (word) => word[indexA].toUpperCase() === translationMap[charA]
           );
+        } else {
+          words = words.filter((word) => {
+            const usedLetters = Object.values(translationMap);
+            return !usedLetters.includes(word[indexA].toUpperCase());
+          });
         }
         clickedWord
           .slice(indexA + 1)
