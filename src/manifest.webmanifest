@@ -12,6 +12,11 @@
       "src": "/src/images/icon-144.png",
       "type": "image/png",
       "sizes": "144x144"
+    },
+    {
+      "src": "/src/images/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": "/",
