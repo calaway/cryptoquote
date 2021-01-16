@@ -76,4 +76,24 @@ describe('Cryptoquote', () => {
       cy.get('#used-letters').should('have.text', '');
     });
   });
+
+  context('when requesting a suggestion', () => {
+    it('returns a list of clickable suggested words', () => {
+      cy.visit('/');
+      cy.get('#ciphertext-input').type("Ejwb zdbpwn rgdt'sd.");
+      cy.get('summary').contains('Suggestions').click();
+      cy.get('.word').contains("RGDT'SD").click();
+
+      cy.get('#suggestions-list').should(
+        'have.text',
+        "2 matches found (most common first):they're, they've"
+      );
+
+      cy.get('.suggested-word').contains("they're").click();
+
+      cy.get('#plaintext').should('have.text', "____ _E____ THEY'RE.");
+      cy.get('#unused-letters').should('have.text', 'ABCDFGIJKLMNOPQSUVWXZ');
+      cy.get('#used-letters').should('have.text', 'EHRTY');
+    });
+  });
 });
