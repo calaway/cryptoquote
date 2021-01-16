@@ -266,7 +266,9 @@
         .replace(/\n/g, '<br />');
     }
 
-    async function renderSuggestionsList(clickedWord) {
+    async function renderSuggestionsList(clickEvent) {
+      clickEvent.preventDefault();
+      const clickedWord = clickEvent.target.innerText;
       commonWords =
         commonWords ||
         (await fetch('src/words.txt')
@@ -444,10 +446,10 @@
 
     document.querySelector('#clear').addEventListener('click', clear);
 
-    suggestionsCiphertextElement.addEventListener('click', (clickEvent) => {
-      clickEvent.preventDefault();
-      renderSuggestionsList(clickEvent.target.innerText);
-    });
+    suggestionsCiphertextElement.addEventListener(
+      'click',
+      renderSuggestionsList
+    );
 
     /**
      * Progressive web app service worker
