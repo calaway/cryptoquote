@@ -61,10 +61,7 @@
       <section>
         <details>
           <summary>Hint: Suggestions</summary>
-          <p>
-            Click a word below to generate a list of common English words
-            matching the same letter pattern.
-          </p>
+          <p>Click on a word to generate suggestions:</p>
           <p id="suggestions-ciphertext"></p>
           <p id="suggestions-list"></p>
         </details>
@@ -301,23 +298,23 @@
             );
           });
       });
-      suggestionsListElement.innerHTML = `${words.length} ${
-        words.length === 1 ? 'match' : 'matches'
-      } found (most common first):<br />${words
-        .slice(0, 100)
+      const numberOfWordsToShow = 12;
+      suggestionsListElement.innerHTML = `Suggestions:<br />${words
+        .slice(0, numberOfWordsToShow)
         .map(
           (word) =>
             `<a href="#" class="suggested-word unstyled-link">${word}</a>`
         )
-        .join(', ')}${words.length > 100 ? ', ...' : ''}`;
+        .join(', ')}${words.length > numberOfWordsToShow ? ', ...' : ''}`;
       suggestionsListElement
         .querySelector('.suggested-word:first-of-type')
         ?.scrollIntoView();
       suggestionsListElement
         .querySelectorAll('.suggested-word')
         .forEach((suggestedWord) => {
-          suggestedWord.addEventListener('click', (click) => {
-            click.target.innerText
+          suggestedWord.addEventListener('click', (clickEvent) => {
+            clickEvent.preventDefault();
+            clickEvent.target.innerText
               .replace(/\W/g, '')
               .split('')
               .forEach((char, index) => {
