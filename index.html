@@ -309,7 +309,7 @@
         )
         .join(', ')}${words.length > 100 ? ', ...' : ''}`;
       suggestionsListElement
-        .querySelector('.suggested-word:last-of-type')
+        .querySelector('.suggested-word:first-of-type')
         ?.scrollIntoView();
       suggestionsListElement
         .querySelectorAll('.suggested-word')
@@ -335,7 +335,8 @@
     function addClickListeners() {
       const allCharElements = document.querySelectorAll('.char');
       allCharElements.forEach((charElement) => {
-        charElement.addEventListener('click', () => {
+        charElement.addEventListener('click', (clickEvent) => {
+          clickEvent.preventDefault();
           allCharElements.forEach((charElement) =>
             charElement.classList.remove('highlight')
           );
@@ -405,7 +406,8 @@
       dummyInput.blur();
     }
 
-    function reset() {
+    function reset(clickEvent) {
+      clickEvent.preventDefault();
       localStorage.clear();
       translationMap = {};
       load();
@@ -418,7 +420,8 @@
       renderUsedLetters();
     }
 
-    function clear() {
+    function clear(clickEvent) {
+      clickEvent.preventDefault();
       translationMap = {};
       load();
     }
@@ -441,9 +444,10 @@
 
     document.querySelector('#clear').addEventListener('click', clear);
 
-    suggestionsCiphertextElement.addEventListener('click', (click) =>
-      renderSuggestionsList(click.target.innerText)
-    );
+    suggestionsCiphertextElement.addEventListener('click', (clickEvent) => {
+      clickEvent.preventDefault();
+      renderSuggestionsList(clickEvent.target.innerText);
+    });
 
     /**
      * Progressive web app service worker
