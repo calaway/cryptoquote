@@ -86,7 +86,7 @@ describe('Cryptoquote', () => {
 
       cy.get('#suggestions-list').should(
         'have.text',
-        "2 matches found (most common first):they're, they've"
+        "Suggestions:they're, they've"
       );
 
       cy.get('.suggested-word').contains("they're").click();
