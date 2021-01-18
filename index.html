@@ -433,11 +433,18 @@
       selectedChar = null;
     }
 
+    function returnFocus() {
+      selectedTabGroupElement
+        .querySelector('.tab-group-item[tabindex="0"]')
+        ?.focus();
+    }
+
     function handleDummyInputKeyUp(event) {
       if (!selectedChar) return;
       const key = event.key;
       if (key === 'Escape') {
         unselectChar();
+        returnFocus();
       } else if (key === 'Backspace' || key === 'Delete') {
         delete translationMap[selectedChar];
         renderCiphertext();
@@ -445,10 +452,7 @@
         renderUsedLetters();
         renderCharTally();
         unselectChar();
-
-        selectedTabGroupElement
-          .querySelector('.tab-group-item[tabindex="0"]')
-          ?.focus();
+        returnFocus();
       }
     }
 
@@ -478,9 +482,7 @@
       renderUsedLetters();
       renderCharTally();
 
-      selectedTabGroupElement
-        .querySelector('.tab-group-item[tabindex="0"]')
-        ?.focus();
+      returnFocus();
     }
 
     function reset(clickEvent) {
