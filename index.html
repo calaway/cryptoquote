@@ -178,9 +178,9 @@
         .split('')
         .map((char, index) => {
           if (Object.keys(translationMap).includes(char)) {
-            return `<a href="#" class="char unstyled-link" data-ciphertext-char="${char}" data-used-letter>${char}</a>`;
+            return `<a href="#" class="char tab-group-item unstyled-link" data-ciphertext-char="${char}" data-used-letter>${char}</a>`;
           } else if (/[A-Z]/.test(char)) {
-            return `<a href="#" class="char unstyled-link" data-ciphertext-char="${char}">${char}</a>`;
+            return `<a href="#" class="char tab-group-item unstyled-link" data-ciphertext-char="${char}">${char}</a>`;
           } else if (char === '\n') {
             return '<br />';
           } else {
@@ -189,6 +189,7 @@
         })
         .join('');
       setupCharElements(ciphertextElement);
+      setupTabGroup(ciphertextElement);
     }
 
     async function renderPlaintext() {
@@ -196,10 +197,10 @@
         .split('')
         .map((char, index) => {
           if (translationMap[char]) {
-            return `<a href="#" class="char unstyled-link" data-ciphertext-char="${char}">${translationMap[char]}</a>`;
+            return `<a href="#" class="char tab-group-item unstyled-link" data-ciphertext-char="${char}">${translationMap[char]}</a>`;
           } else if (/[A-Z]/.test(char)) {
             // Using transparent '_' instead of ' ' for testability
-            return `<a href="#" class="char unstyled-link" data-ciphertext-char="${char}" style='color: transparent;'>_</a>`;
+            return `<a href="#" class="char tab-group-item unstyled-link" data-ciphertext-char="${char}" style='color: transparent;'>_</a>`;
           } else if (char === '\n') {
             return '<br />';
           } else {
@@ -208,6 +209,7 @@
         })
         .join('');
       setupCharElements(plaintextElement);
+      setupTabGroup(plaintextElement);
     }
 
     async function renderUsedLetters() {
@@ -224,11 +226,12 @@
           const dataCiphertextChar = Object.entries(translationMap).find(
             ([key, value]) => value === char
           )[0];
-          return `<a href="#" class="char unstyled-link" data-ciphertext-char="${dataCiphertextChar}" data-used-letter>${char}</a>`;
+          return `<a href="#" class="char tab-group-item unstyled-link" data-ciphertext-char="${dataCiphertextChar}" data-used-letter>${char}</a>`;
         })
         .join('');
       usedLettersElement.dataset.selectedIndex = 0;
       setupCharElements(usedLettersElement);
+      setupTabGroup(usedLettersElement);
     }
 
     async function renderCharTally() {
@@ -249,12 +252,13 @@
         .sort(([_char1, tally1], [_char2, tally2]) => tally2 - tally1)
         .map(([char, tally]) => {
           const isUsedLetter = Object.keys(translationMap).includes(char);
-          return `<div><a href="#" class="char unstyled-link" data-ciphertext-char="${char}" ${
+          return `<div><a href="#" class="char tab-group-item unstyled-link" data-ciphertext-char="${char}" ${
             isUsedLetter ? 'data-used-letter' : ''
           }>${char}: ${tally}</a></div>`;
         })
         .join('');
       setupCharElements(ciphertextCharTallyElement);
+      setupTabGroup(ciphertextCharTallyElement);
     }
 
     async function renderSuggestionsCiphertext() {
@@ -334,18 +338,11 @@
     }
 
     function setupCharElements(charGroupElement) {
-      function modulo(a, n) {
-        return ((a % n) + n) % n;
-      }
       charGroupElement
         .querySelectorAll('.char')
         .forEach((charElement, index) => {
           charElement.addEventListener('click', (clickEvent) => {
             clickEvent.preventDefault();
-            selectedTabGroupElement = charGroupElement;
-            charGroupElement.querySelector('.char[tabindex="0"]').tabIndex = -1;
-            charGroupElement.dataset.selectedIndex = index;
-            clickEvent.target.tabIndex = 0;
             document
               .querySelectorAll('.char')
               .forEach((charElement) =>
@@ -363,12 +360,33 @@
             dummyInput.focus();
             window.scroll(xPosition, yPosition);
           });
+        });
+    }
 
-          const selectedIndex = charGroupElement.dataset.selectedIndex;
-          const tabindex = index == selectedIndex ? 0 : -1;
-          charElement.tabIndex = tabindex;
+    function setupTabGroup(tabGroupElement) {
+      function modulo(a, n) {
+        return ((a % n) + n) % n;
+      }
 
-          charElement.addEventListener('keydown', (keydownEvent) => {
+      tabGroupElement.dataset.selectedIndex =
+        tabGroupElement.dataset.selectedIndex || 0;
+
+      tabGroupElement
+        .querySelectorAll('.tab-group-item')
+        .forEach((selectableElement, index) => {
+          const tabindex =
+            index == tabGroupElement.dataset.selectedIndex ? 0 : -1;
+          selectableElement.tabIndex = tabindex;
+
+          selectableElement.addEventListener('click', (clickEvent) => {
+            clickEvent.preventDefault();
+            selectedTabGroupElement = tabGroupElement;
+            tabGroupElement.querySelector('.char[tabindex="0"]').tabIndex = -1;
+            tabGroupElement.dataset.selectedIndex = index;
+            clickEvent.target.tabIndex = 0;
+          });
+
+          selectableElement.addEventListener('keydown', (keydownEvent) => {
             let increment;
             if (
               keydownEvent.key === 'ArrowLeft' ||
@@ -385,13 +403,13 @@
             }
             keydownEvent.preventDefault();
             keydownEvent.target.tabIndex = -1;
-            const charCount = charGroupElement.querySelectorAll('.char').length;
+            const charCount = tabGroupElement.querySelectorAll('.char').length;
             const selectedIndex = modulo(
-              parseInt(charGroupElement.dataset.selectedIndex) + increment,
+              parseInt(tabGroupElement.dataset.selectedIndex) + increment,
               charCount
             );
-            charGroupElement.dataset.selectedIndex = selectedIndex;
-            const newSelectedElement = charGroupElement.querySelectorAll(
+            tabGroupElement.dataset.selectedIndex = selectedIndex;
+            const newSelectedElement = tabGroupElement.querySelectorAll(
               '.char'
             )[selectedIndex];
             newSelectedElement.tabIndex = 0;
