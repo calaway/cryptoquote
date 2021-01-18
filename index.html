@@ -29,12 +29,12 @@
       <hr />
 
       <section>
-        <p id="ciphertext" data-selected-index="0"></p>
+        <p id="ciphertext"></p>
       </section>
 
       <section>
         <input type="text" id="dummy-input" tabindex="-1" />
-        <p id="plaintext" data-selected-index="0"></p>
+        <p id="plaintext"></p>
         <a href="#" id="clear">Clear</a>
       </section>
       <hr />
@@ -42,7 +42,7 @@
       <section>
         <h5>Remaining letters</h5>
         <p id="unused-letters"></p>
-        <p id="used-letters" data-selected-index="0"></p>
+        <p id="used-letters"></p>
       </section>
       <hr />
 
@@ -51,7 +51,7 @@
       <section>
         <details>
           <summary>Character counts</summary>
-          <p id="ciphertext-char-tally" data-selected-index="0"></p>
+          <p id="ciphertext-char-tally"></p>
           <hr />
         </details>
       </section>
@@ -265,9 +265,11 @@
       suggestionsCiphertextElement.innerHTML = localStorage.ciphertext
         .replace(
           /[\w'’]+/g,
-          (word) => `<a href="#" class="word unstyled-link">${word}</a>`
+          (word) =>
+            `<a href="#" class="word tab-group-item unstyled-link">${word}</a>`
         )
         .replace(/\n/g, '<br />');
+      setupTabGroup(suggestionsCiphertextElement);
     }
 
     async function renderSuggestionsList(clickEvent) {
@@ -310,7 +312,7 @@
         .slice(0, numberOfWordsToShow)
         .map(
           (word) =>
-            `<a href="#" class="suggested-word unstyled-link">${word}</a>`
+            `<a href="#" class="suggested-word tab-group-item unstyled-link">${word}</a>`
         )
         .join(', ')}${words.length > numberOfWordsToShow ? ', ...' : ''}`;
       suggestionsListElement
@@ -335,6 +337,7 @@
             unselectChar();
           });
         });
+      setupTabGroup(suggestionsListElement);
     }
 
     function setupCharElements(charGroupElement) {
@@ -381,7 +384,9 @@
           selectableElement.addEventListener('click', (clickEvent) => {
             clickEvent.preventDefault();
             selectedTabGroupElement = tabGroupElement;
-            tabGroupElement.querySelector('.char[tabindex="0"]').tabIndex = -1;
+            tabGroupElement.querySelector(
+              '.tab-group-item[tabindex="0"]'
+            ).tabIndex = -1;
             tabGroupElement.dataset.selectedIndex = index;
             clickEvent.target.tabIndex = 0;
           });
@@ -403,14 +408,16 @@
             }
             keydownEvent.preventDefault();
             keydownEvent.target.tabIndex = -1;
-            const charCount = tabGroupElement.querySelectorAll('.char').length;
+            const charCount = tabGroupElement.querySelectorAll(
+              '.tab-group-item'
+            ).length;
             const selectedIndex = modulo(
               parseInt(tabGroupElement.dataset.selectedIndex) + increment,
               charCount
             );
             tabGroupElement.dataset.selectedIndex = selectedIndex;
             const newSelectedElement = tabGroupElement.querySelectorAll(
-              '.char'
+              '.tab-group-item'
             )[selectedIndex];
             newSelectedElement.tabIndex = 0;
             newSelectedElement.focus();
@@ -439,7 +446,9 @@
         renderCharTally();
         unselectChar();
 
-        selectedTabGroupElement.querySelector('.char[tabindex="0"]')?.focus();
+        selectedTabGroupElement
+          .querySelector('.tab-group-item[tabindex="0"]')
+          ?.focus();
       }
     }
 
@@ -469,7 +478,9 @@
       renderUsedLetters();
       renderCharTally();
 
-      selectedTabGroupElement.querySelector('.char[tabindex="0"]')?.focus();
+      selectedTabGroupElement
+        .querySelector('.tab-group-item[tabindex="0"]')
+        ?.focus();
     }
 
     function reset(clickEvent) {
