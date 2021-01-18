@@ -422,6 +422,8 @@
         renderUsedLetters();
         renderCharTally();
         unselectChar();
+
+        selectedTabGroupElement.querySelector('.char[tabindex="0"]')?.focus();
       }
     }
 
@@ -451,7 +453,6 @@
       renderUsedLetters();
       renderCharTally();
 
-      dummyInput.blur();
       selectedTabGroupElement.querySelector('.char[tabindex="0"]')?.focus();
     }
 
