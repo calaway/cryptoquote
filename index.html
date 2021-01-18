@@ -186,7 +186,7 @@
           }
         })
         .join('');
-      addClickListeners(ciphertextElement);
+      setupCharElements(ciphertextElement);
     }
 
     async function renderPlaintext() {
@@ -205,7 +205,7 @@
           }
         })
         .join('');
-      addClickListeners(plaintextElement);
+      setupCharElements(plaintextElement);
     }
 
     async function renderUsedLetters() {
@@ -226,7 +226,7 @@
         })
         .join('');
       usedLettersElement.dataset.selectedIndex = 0;
-      addClickListeners(usedLettersElement);
+      setupCharElements(usedLettersElement);
     }
 
     async function renderCharTally() {
@@ -252,7 +252,7 @@
           }>${char}: ${tally}</a></div>`;
         })
         .join('');
-      addClickListeners(ciphertextCharTallyElement);
+      setupCharElements(ciphertextCharTallyElement);
     }
 
     async function renderSuggestionsCiphertext() {
@@ -331,7 +331,7 @@
         });
     }
 
-    function addClickListeners(charGroupElement) {
+    function setupCharElements(charGroupElement) {
       function modulo(a, n) {
         return ((a % n) + n) % n;
       }
