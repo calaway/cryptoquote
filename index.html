@@ -489,10 +489,10 @@
       clickEvent.preventDefault();
       localStorage.clear();
       translationMap = {};
-      load();
+      initialize();
     }
 
-    function load() {
+    function initialize() {
       ciphertext = localStorage.ciphertext || '';
       updateCiphertext(ciphertext);
       renderCiphertextInput();
@@ -502,10 +502,10 @@
     function clear(clickEvent) {
       clickEvent.preventDefault();
       translationMap = {};
-      load();
+      initialize();
     }
 
-    load();
+    initialize();
 
     /**
      * Add event listeners
