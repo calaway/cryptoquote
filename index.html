@@ -345,9 +345,15 @@
             clickEvent.target.innerText
               .replace(/\W/g, '')
               .split('')
-              .forEach((char, index) => {
+              .forEach((plaintextChar, index) => {
+                plaintextChar = plaintextChar.toUpperCase();
+                Object.entries(translationMap).forEach(([ctChar, ptChar]) => {
+                  if (ptChar === plaintextChar) {
+                    delete translationMap[ctChar];
+                  }
+                });
                 const ciphertextChar = clickedWord.replace(/\W/g, '')[index];
-                translationMap[ciphertextChar] = char.toUpperCase();
+                translationMap[ciphertextChar] = plaintextChar;
               });
             setTranslationMap(translationMap);
           });
