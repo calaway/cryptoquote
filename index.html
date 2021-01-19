@@ -174,7 +174,7 @@
       renderSuggestionsCiphertext();
     }
 
-    function setTranslationMap(newTranslationMap) {
+    function setTranslationMap(newTranslationMap, confetti = true) {
       localStorage.translationMap = JSON.stringify(newTranslationMap);
       translationMap = newTranslationMap;
 
@@ -184,7 +184,7 @@
       renderCharTally();
       unselectChar();
       returnFocus();
-      confettiOnCompletion();
+      if (confetti) confettiOnCompletion();
     }
 
     /**
@@ -509,7 +509,7 @@
     function initialize() {
       setCiphertext(ciphertext);
       renderCiphertextInput();
-      setTranslationMap(translationMap);
+      setTranslationMap(translationMap, false);
     }
 
     function clear(clickEvent) {
