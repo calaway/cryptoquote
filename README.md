@@ -2,7 +2,7 @@
 
 A web app for solving cryptoquote puzzes like this one.
 
-<div style="text-align:center"><img src="readme/cryptoquote.jpg" alt="sample cryptoquote"></img></div>
+<p align="center"><img src="readme/cryptoquote.jpg" alt="sample cryptoquote"></img></p>
 
 ## Ready to play?
 
