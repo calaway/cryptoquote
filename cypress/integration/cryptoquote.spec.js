@@ -33,7 +33,7 @@ describe('Cryptoquote', () => {
         'have.text',
         'ACDEFGHIJKLMNOPQRSTUVWXYZ'
       );
-      cy.get('#used-letters').should('have.text', 'B');
+      cy.get('#used-letters').should('have.text', 'BBB');
     });
   });
 
