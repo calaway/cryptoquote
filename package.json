@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "browser-sync start --server --watch --files 'src/**/*' ./index.html",
+    "start": "browser-sync start --server",
+    "dev": "browser-sync start --server --watch --files 'src/**/*' ./index.html",
     "cypress:open": "cypress open",
     "test": "cypress run"
   },
