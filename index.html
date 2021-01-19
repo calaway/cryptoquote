@@ -492,6 +492,7 @@
 
     function reset(clickEvent) {
       clickEvent.preventDefault();
+      suggestionsListElement.innerHTML = '';
       ciphertext = '';
       translationMap = {};
       initialize();
@@ -505,6 +506,7 @@
 
     function clear(clickEvent) {
       clickEvent.preventDefault();
+      suggestionsListElement.innerHTML = '';
       setTranslationMap({});
     }
 
