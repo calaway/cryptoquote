@@ -3,8 +3,8 @@ name: CI
 on: [push]
 
 jobs:
-  test:
-    runs-on: ubuntu-20.04
+  cypress-run:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
