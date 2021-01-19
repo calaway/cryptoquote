@@ -129,6 +129,7 @@
     }
   </style>
 
+  <script src="https://cdn.jsdelivr.net/gh/mathusummut/confetti.js/confetti.min.js"></script>
   <script>
     'use strict';
 
@@ -183,6 +184,7 @@
       renderCharTally();
       unselectChar();
       returnFocus();
+      confettiOnCompletion();
     }
 
     /**
@@ -517,6 +519,23 @@
     }
 
     initialize();
+
+    async function confettiOnCompletion() {
+      function isComplete() {
+        return (
+          ciphertext.length > 0 &&
+          ciphertext
+            .replace(/\W/g, '')
+            .split('')
+            .every((ciphertextChar) =>
+              Object.keys(translationMap).includes(ciphertextChar)
+            )
+        );
+      }
+      if (isComplete()) {
+        confetti.start(3000);
+      }
+    }
 
     /**
      * Add event listeners
