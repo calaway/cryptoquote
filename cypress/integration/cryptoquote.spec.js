@@ -66,7 +66,7 @@ describe('Cryptoquote', () => {
       cy.get('[data-ciphertext-char="E"]').first().click().type('C');
       cy.get('#clear').click();
 
-      cy.get('#ciphertext-input').should('have.value', 'EJWB ZDBPWN PSDH’R.');
+      cy.get('#ciphertext-input').should('have.value', 'Ejwb zdbpwn psdh’r.');
       cy.get('#ciphertext').should('have.text', 'EJWB ZDBPWN PSDH’R.');
       cy.get('#plaintext').should('have.text', '____ ______ ____’_.');
       cy.get('#unused-letters').should(

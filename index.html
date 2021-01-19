@@ -130,6 +130,8 @@
   </style>
 
   <script>
+    'use strict';
+
     /**
      * HTML elements
      */
@@ -150,31 +152,48 @@
     /**
      * Global variables
      */
+    let ciphertext = localStorage.ciphertext || '';
+    let translationMap = localStorage.translationMap
+      ? JSON.parse(localStorage.translationMap)
+      : {};
     let selectedChar;
-    let translationMap = {};
     let commonWords;
     let selectedTabGroupElement = ciphertextElement;
 
     /**
      * Update state
      */
-    function updateCiphertext(newCiphertext) {
-      localStorage.ciphertext = newCiphertext.toUpperCase();
+    function setCiphertext(newCiphertext) {
+      ciphertext = newCiphertext.toUpperCase();
+      localStorage.ciphertext = ciphertext;
+
       renderCiphertext();
       renderPlaintext();
       renderCharTally();
       renderSuggestionsCiphertext();
     }
 
+    function setTranslationMap(newTranslationMap) {
+      localStorage.translationMap = JSON.stringify(newTranslationMap);
+      translationMap = newTranslationMap;
+
+      renderCiphertext();
+      renderPlaintext();
+      renderUsedLetters();
+      renderCharTally();
+      unselectChar();
+      returnFocus();
+    }
+
     /**
      * Update DOM
      */
     async function renderCiphertextInput() {
-      ciphertextInputElement.value = localStorage.ciphertext;
+      ciphertextInputElement.value = ciphertext;
     }
 
     async function renderCiphertext() {
-      ciphertextElement.innerHTML = localStorage.ciphertext
+      ciphertextElement.innerHTML = ciphertext
         .split('')
         .map((char, index) => {
           if (Object.keys(translationMap).includes(char)) {
@@ -193,7 +212,7 @@
     }
 
     async function renderPlaintext() {
-      plaintextElement.innerHTML = localStorage.ciphertext
+      plaintextElement.innerHTML = ciphertext
         .split('')
         .map((char, index) => {
           if (translationMap[char]) {
@@ -236,7 +255,7 @@
 
     async function renderCharTally() {
       const ciphertextCharTally = {};
-      localStorage.ciphertext
+      ciphertext
         .replace(/[^A-Z]/g, '')
         .split('')
         .forEach((char) =>
@@ -262,7 +281,7 @@
     }
 
     async function renderSuggestionsCiphertext() {
-      suggestionsCiphertextElement.innerHTML = localStorage.ciphertext
+      suggestionsCiphertextElement.innerHTML = ciphertext
         .replace(
           /[\w'’]+/g,
           (word) =>
@@ -330,11 +349,7 @@
                 const ciphertextChar = clickedWord.replace(/\W/g, '')[index];
                 translationMap[ciphertextChar] = char.toUpperCase();
               });
-            renderCiphertext();
-            renderPlaintext();
-            renderUsedLetters();
-            renderCharTally();
-            unselectChar();
+            setTranslationMap(translationMap);
           });
         });
       setupTabGroup(suggestionsListElement);
@@ -447,12 +462,7 @@
         returnFocus();
       } else if (key === 'Backspace' || key === 'Delete') {
         delete translationMap[selectedChar];
-        renderCiphertext();
-        renderPlaintext();
-        renderUsedLetters();
-        renderCharTally();
-        unselectChar();
-        returnFocus();
+        setTranslationMap(translationMap);
       }
     }
 
@@ -475,34 +485,27 @@
           }
         }
       );
-
       translationMap[selectedChar] = dummyInputValue;
-      renderCiphertext();
-      renderPlaintext();
-      renderUsedLetters();
-      renderCharTally();
 
-      returnFocus();
+      setTranslationMap(translationMap);
     }
 
     function reset(clickEvent) {
       clickEvent.preventDefault();
-      localStorage.clear();
+      ciphertext = '';
       translationMap = {};
       initialize();
     }
 
     function initialize() {
-      ciphertext = localStorage.ciphertext || '';
-      updateCiphertext(ciphertext);
+      setCiphertext(ciphertext);
       renderCiphertextInput();
-      renderUsedLetters();
+      setTranslationMap(translationMap);
     }
 
     function clear(clickEvent) {
       clickEvent.preventDefault();
-      translationMap = {};
-      initialize();
+      setTranslationMap({});
     }
 
     initialize();
@@ -511,7 +514,7 @@
      * Add event listeners
      */
     ciphertextInputElement.addEventListener('input', (event) =>
-      updateCiphertext(event.target.value)
+      setCiphertext(event.target.value)
     );
 
     // The purpose of this dummy input is twofold: 1) mobile keyboards won't come up unless an input field is in focus, and 2) mobile keyboards (specifically Android) don't recognize the `event.key` on keydown/keyup events, so this captures the key by reading the input value.
