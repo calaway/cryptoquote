@@ -82,6 +82,11 @@ describe('Cryptoquote', () => {
       cy.visit('/');
       cy.get('#ciphertext-input').type("Ejwb zdbpwn rgdt'sd.");
       cy.get('summary').contains('Suggestions').click();
+      cy.get('.word').contains('ZDBPWN').click();
+
+      cy.get('#suggestions-list').should('not.include.text', "you're");
+      cy.get('#suggestions-list').should('not.include.text', 'listen');
+
       cy.get('.word').contains("RGDT'SD").click();
 
       cy.get('#suggestions-list').should(
