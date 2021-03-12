@@ -306,6 +306,8 @@
       clickedWord.split('').forEach((charA, indexA) => {
         if (charA === "'" || charA === '’') {
           words = words.filter((word) => word[indexA] === "'");
+        } else {
+          words = words.filter((word) => word[indexA] !== "'");
         }
         if (translationMap[charA]) {
           words = words.filter(

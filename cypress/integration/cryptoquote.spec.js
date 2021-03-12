@@ -77,11 +77,15 @@ describe('Cryptoquote', () => {
     });
   });
 
-  context('when requesting a suggestion', () => {
+  context.only('when requesting a suggestion', () => {
     it('returns a list of clickable suggested words', () => {
       cy.visit('/');
       cy.get('#ciphertext-input').type("Ejwb zdbpwn rgdt'sd.");
       cy.get('summary').contains('Suggestions').click();
+      cy.get('.word').contains('ZDBPWN').click();
+
+      cy.get('#suggestions-list').should('not.include.text', "you're");
+
       cy.get('.word').contains("RGDT'SD").click();
 
       cy.get('#suggestions-list').should(
