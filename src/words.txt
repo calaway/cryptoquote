@@ -35,7 +35,6 @@ all
 well
 are
 he
-oh
 about
 right
 you're
@@ -127,7 +126,6 @@ maybe
 down
 man
 has
-uh
 very
 by
 there's
@@ -275,8 +273,6 @@ hope
 name
 same
 went
-um
-hmm
 happy
 pretty
 saw
@@ -303,7 +299,6 @@ myself
 couldn't
 exactly
 having
-ah
 probably
 happen
 we've
@@ -368,7 +363,6 @@ move
 anyone
 person
 bye
-J
 somebody
 Dr
 heart
@@ -402,7 +396,6 @@ five
 least
 town
 aren't
-ha
 working
 year
 makes
@@ -479,7 +472,6 @@ comes
 hit
 story
 ya
-mm
 waiting
 dinner
 against
@@ -531,7 +523,6 @@ high
 ahead
 week
 wonderful
-T
 fight
 past
 cut
@@ -539,7 +530,6 @@ quite
 number
 he'll
 sick
-S
 it'll
 game
 eat
@@ -625,14 +615,12 @@ mistake
 ooh
 handle
 spend
-C
 totally
 giving
 control
 here's
 marriage
 realize
-D
 power
 president
 unless
@@ -640,14 +628,12 @@ sex
 girls
 send
 needed
-O
 taken
 died
 scared
 picture
 talked
 Jake
-Al
 ass
 hundred
 changed
@@ -690,7 +676,6 @@ white
 fast
 Natalie
 words
-R
 food
 none
 drive
@@ -795,7 +780,6 @@ red
 entire
 trip
 Brooke
-E
 club
 Niles
 suppose
@@ -804,7 +788,6 @@ imagine
 Todd
 fair
 caught
-B
 blame
 street
 sitting
@@ -835,7 +818,6 @@ forgot
 small
 interested
 table
-nbsp
 become
 Craig
 mouth
@@ -854,7 +836,6 @@ shoot
 stick
 Ray
 follow
-Bo
 angry
 instead
 buddy
@@ -902,7 +883,6 @@ history
 share
 offer
 hurry
-ow
 feet
 wondering
 simple
@@ -936,7 +916,6 @@ road
 Eve
 staying
 short
-M
 beat
 sweetie
 mention
@@ -944,7 +923,6 @@ clothes
 finished
 fell
 neither
-mmm
 fix
 Victor
 respect
@@ -1040,7 +1018,6 @@ park
 sleeping
 Chloe
 Rafe
-shh
 record
 lord
 Erica
@@ -1096,7 +1073,6 @@ rules
 Elizabeth
 Sabrina
 summer
-ex
 cop
 learned
 thirty
@@ -1152,14 +1128,12 @@ chief
 faith
 Simon
 gay
-ho
 one's
 month
 visit
 Hal
 could've
 c'mon
-aw
 Edmund
 Brady
 letter
@@ -1205,7 +1179,6 @@ kick
 others
 grab
 mother's
-P
 Sharon
 discuss
 third
@@ -1242,7 +1215,6 @@ papers
 medical
 incredible
 witch
-er
 drunk
 attorney
 Charlie
@@ -1250,7 +1222,6 @@ tells
 knock
 Karen
 ways
-eh
 belle
 cash
 gives
@@ -1274,7 +1245,6 @@ ground
 whose
 outta
 Kyle
-L
 weekend
 matters
 wrote
@@ -1288,7 +1258,6 @@ impossible
 books
 machine
 waste
-th
 pretend
 named
 danger
@@ -1368,14 +1337,12 @@ church
 bathroom
 flight
 Chad
-la
 honestly
 sing
 Katie
 foot
 games
 glass
-N
 Mitch
 remind
 bank
@@ -1388,7 +1355,6 @@ tree
 dare
 hardly
 that'll
-U
 interest
 steal
 princess
@@ -1434,7 +1400,6 @@ total
 crap
 crying
 Paige
-K
 belong
 lay
 partner
@@ -1466,7 +1431,6 @@ breaking
 file
 lock
 computer
-yo
 Rebecca
 wine
 closed
@@ -1613,7 +1577,6 @@ speech
 names
 issue
 orders
-nah
 final
 Michelle
 America
@@ -1622,10 +1585,8 @@ results
 code
 Ned
 Bonnie
-W
 believed
 complicated
-umm
 research
 nowhere
 escape
@@ -1697,7 +1658,6 @@ spoke
 quickly
 scare
 Marah
-G
 beach
 Mia
 brown
@@ -1705,12 +1665,9 @@ afford
 vote
 settle
 gold
-re
 mentioned
-ed
 due
 passion
-Y
 stayed
 rule
 Friday
@@ -1772,7 +1729,6 @@ Colin
 bright
 Amanda
 Fraser
-F
 babies
 army
 where'd
@@ -1844,7 +1800,6 @@ Kenny
 Bobby
 pizza
 brothers
-X
 signed
 bird
 ahh
@@ -1863,7 +1818,6 @@ ideas
 exciting
 covered
 Parker
-de
 familiar
 bomb
 'bout
@@ -1873,7 +1827,6 @@ color
 heavy
 schedule
 records
-H
 dollar
 capable
 master
@@ -2002,7 +1955,6 @@ victoria
 operation
 suck
 offered
-hm
 ends
 dump
 rent
@@ -2063,7 +2015,6 @@ Stan
 sexy
 Julia
 explanation
-da
 process
 picking
 based
@@ -2182,7 +2133,6 @@ pills
 kicked
 harm
 recently
-ma
 snow
 fortune
 strike
@@ -2367,7 +2317,6 @@ kinds
 cast
 cancer
 Abe
-v
 sky
 likely
 Laurence
@@ -2541,7 +2490,6 @@ reputation
 balls
 attacked
 among
-lt
 knowledge
 presents
 inn
@@ -2649,8 +2597,6 @@ military
 choices
 artist
 William
-wh
-uhh
 gym
 cruel
 wings
@@ -2679,7 +2625,6 @@ Audrey
 toilet
 secretary
 sneak
-q
 mix
 Marty
 Greta
@@ -2987,7 +2932,6 @@ bowl
 pregnancy
 Laurie
 Hollywood
-co
 prisoner
 delivery
 Jenny
@@ -3305,7 +3249,6 @@ services
 sauce
 review
 promises
-Oz
 lecture
 Greg
 eighty
@@ -3345,7 +3288,6 @@ Elliot
 deck
 biological
 Vince
-SD
 pheebs
 minor
 ease
@@ -3377,7 +3319,6 @@ writer
 reception
 pin
 oops
-gt
 diner
 annoying
 agents
@@ -3389,7 +3330,6 @@ ability
 sergeant
 Julian's
 international
-id
 Gina
 gig
 Davidson
@@ -3521,7 +3461,6 @@ facing
 engine
 booked
 boo
-un
 songs
 Sandburg
 poker
@@ -3540,11 +3479,9 @@ trail
 saint
 rotten
 liver
-hmmm
 drawn
 device
 whore
-ta
 magical
 Bruce
 village
@@ -3648,12 +3585,10 @@ suits
 carol
 boxes
 salt
-el
 Cassadine
 express
 collect
 boy's
-ba
 tragedy
 therefore
 spoil
@@ -3767,7 +3702,6 @@ oooh
 boarding
 approve
 urgent
-shhh
 misunderstanding
 minister
 Ellen
@@ -3950,7 +3884,6 @@ upside
 supplies
 proves
 parked
-Jo
 instance
 grounds
 German
@@ -4231,12 +4164,10 @@ sheets
 referring
 personnel
 Perkins
-ol
 Maxie
 item
 Genoa
 gear
-du
 majesty
 forest
 fans
@@ -4260,7 +4191,6 @@ fashioned
 empire
 aids
 accomplished
-ye
 Tammy
 Noah
 mommy's
@@ -4531,7 +4461,6 @@ dull
 Clark
 beneath
 ages
-SI
 peanut
 horror
 heels
@@ -4583,7 +4512,6 @@ stores
 reservations
 pops
 Joseph
-ew
 Arthur
 appetite
 anybody's
@@ -4602,7 +4530,6 @@ tearing
 sends
 sam's
 rape
-lo
 laughed
 function
 core
@@ -4658,7 +4585,6 @@ companies
 backed
 sunset
 pan
-pa
 owned
 nation
 lipstick
@@ -4889,7 +4815,6 @@ scar
 pole
 duh
 collar
-CD
 worthless
 warlock
 sucking
@@ -4914,7 +4839,6 @@ Ramsey
 muffin
 mid
 measure
-le
 Jeffrey
 dishes
 crawling
@@ -5048,7 +4972,6 @@ sorta
 scan
 rod
 payment
-op
 motor
 mini
 manticore
@@ -5339,7 +5262,6 @@ blamed
 wizard
 tops
 Terrance
-sh
 repair
 quiz
 prep
@@ -5403,7 +5325,6 @@ solo
 Ryan's
 realizes
 psych
-mmmm
 Lois
 jazz
 hawk
@@ -5497,7 +5418,6 @@ sophisticated
 Ron
 religion
 luggage
-ll
 lemon
 investigate
 hike
@@ -5512,7 +5432,6 @@ cherry
 CEO
 Bruno
 acid
-z
 shining
 Russia
 rolled
@@ -5614,8 +5533,6 @@ previous
 Michigan
 kingdom
 kindness
-Ivy's
-im
 flames
 sunny
 shoulda
@@ -5738,7 +5655,6 @@ hatred
 grill
 formula
 Esther
-en
 efforts
 corpse
 clues
@@ -5763,7 +5679,6 @@ cart
 broadcast
 wired
 violation
-ve
 suspended
 sting
 promising
@@ -5992,7 +5907,6 @@ busting
 buff
 wax
 sleeve
-se
 pudding
 products
 philosophy
@@ -6036,7 +5950,6 @@ roller
 returns
 negotiate
 millennium
-mi
 marsh
 majority
 lethal
@@ -6060,7 +5973,6 @@ nigger
 medal
 Kiriakis
 insulted
-hu
 grudge
 established
 driveway
@@ -6076,7 +5988,6 @@ searched
 owed
 originally
 nickname
-mo
 lighting
 lend
 films
@@ -6214,7 +6125,6 @@ bluffing
 betting
 bein
 bedtime
-ay
 alpha
 alcoholic
 waters
@@ -6370,7 +6280,6 @@ humble
 greedy
 countries
 wonders
-tsk
 thorough
 spine
 shotgun
@@ -6378,7 +6287,6 @@ reckless
 Rath
 railroad
 psychiatric
-na
 meaningless
 latte
 Kong
@@ -6472,7 +6380,6 @@ float
 embrace
 corners
 whining
-wa
 turner
 sweating
 sole
@@ -6497,7 +6404,6 @@ controls
 cleaner
 cheerleader
 Balsom
-au
 wooden
 unnecessary
 stunning
@@ -6623,7 +6529,6 @@ obnoxious
 mates
 Jasper
 improve
-ii
 hereby
 gabby
 faked
@@ -6760,7 +6665,6 @@ nude
 lasts
 fugitive
 freezer
-et
 discount
 cranky
 crank
@@ -6786,7 +6690,6 @@ protocol
 nickel
 nana
 Livvie's
-jt
 garlic
 foreman
 decency
@@ -6862,14 +6765,12 @@ Troy's
 tipped
 stranded
 smartest
-sg
 Sabrina's
 Richie
 rhythm
 replacement
 repeating
 puke
-psst
 Perry
 paycheck
 overreacted
@@ -6935,7 +6836,6 @@ Stu
 steer
 ruling
 Rogers
-rd
 poisoning
 pirate
 nursing
@@ -7084,7 +6984,6 @@ rental
 prostitute
 premonitions
 physics
-nd
 monk
 mild
 jumps
@@ -7109,7 +7008,6 @@ vent
 traumatic
 traced
 tow
-te
 Swiss
 sweaty
 shaft
@@ -7220,7 +7118,6 @@ hunk
 graham
 fountain
 fellows
-es
 entertain
 Edna
 earthquake
@@ -7496,7 +7393,6 @@ cocoa
 chewing
 brake
 bounty
-ax
 additional
 acceptable
 unbelievably
@@ -7512,7 +7408,6 @@ registration
 premises
 passengers
 organ
-oo
 occasional
 Marian
 Khasinau
@@ -7633,7 +7528,6 @@ murdering
 mine's
 masks
 marathon
-Li
 Lawndale
 laptop
 intact
@@ -7680,7 +7574,6 @@ guarantees
 folk
 flown
 feast
-ey
 extent
 educated
 disgrace
@@ -7895,7 +7788,6 @@ roommates
 reaches
 Rambaldi
 programs
-pm
 pitcher
 ping
 offend
@@ -8023,7 +7915,6 @@ por
 poems
 playin
 playground
-pd
 Parker's
 paranoia
 Oscar
@@ -8261,10 +8152,8 @@ partial
 packages
 orderly
 obsessive
-ni
 newbie
 nevertheless
-NBC
 murderers
 motto
 Moscow
@@ -8365,7 +8254,6 @@ mines
 margo's
 jumbo
 joni
-iv
 invasion
 hound
 homosexual
@@ -8432,7 +8320,6 @@ coroner
 confessing
 cologne
 cedar
-CA
 bruise
 betraying
 bailing
@@ -8629,7 +8516,6 @@ wiser
 willingly
 weirdest
 waltz
-vu
 voila
 timmih
 thinner
@@ -8753,7 +8639,6 @@ herbal
 hangin
 germs
 generosity
-fu
 freed
 flashing
 doughnut
@@ -8807,7 +8692,6 @@ elementary
 Edmund's
 drastic
 dolly
-di
 database
 Danielle
 Damon
@@ -8910,12 +8794,10 @@ rattle
 profound
 perez
 peoples
-oy
 musta
 moses
 mona
 mocking
-mnh
 misunderstand
 merit
 mayday
@@ -8931,7 +8813,6 @@ forensic
 foods
 espresso
 enthusiastic
-ee
 duct
 drawers
 devastating
@@ -8968,7 +8849,6 @@ unfaithful
 underwater
 tribute
 teller
-su
 strangled
 state's
 sissy
@@ -9041,7 +8921,6 @@ wedge
 warriors
 wager
 unfit
-Ty
 tuxedo
 tripping
 treatments
@@ -9130,7 +9009,6 @@ Reid
 Randall
 publisher
 pharmacy
-pH
 pens
 overprotective
 obstacles
@@ -9226,7 +9104,6 @@ whiz
 voluntarily
 visible
 ventilator
-VA
 unpack
 unload
 universal
@@ -9264,7 +9141,6 @@ magnet
 Lucien
 lighthouse
 liability
-KGB
 jock
 headline
 groovy
@@ -9279,7 +9155,6 @@ curly
 cupid
 condolences
 comrade
-ch
 Cassadines
 bulb
 Brittany's
@@ -9324,7 +9199,6 @@ precaution
 pox
 Phillips
 pearls
-pcpd
 parks
 nonetheless
 melting
@@ -9394,7 +9268,6 @@ sponsor
 slimy
 singles
 sibling
-shhhh
 Shelley
 restored
 representative
@@ -9468,7 +9341,6 @@ Mississippi
 Matthew's
 mash
 Maine
-ja
 investigations
 invent
 indulge
@@ -9576,7 +9448,6 @@ twenties
 trustworthy
 translation
 traditions
-Sy
 surviving
 surgeons
 stupidity
@@ -9588,7 +9459,6 @@ salvation
 Ritchie
 remorse
 Rafe's
-ra
 Quincy
 Princeton
 preferably
@@ -9893,7 +9763,6 @@ viewing
 viewers
 uptown
 Tucker
-tu
 transmitter
 trains
 tickle
@@ -9956,7 +9825,6 @@ bridges
 Ashley's
 applications
 ankles
-wo
 vending
 typing
 tribbiani
